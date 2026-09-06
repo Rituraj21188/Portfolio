@@ -1,111 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rituraj Gogoi | Drone Data Analyst & GIS Specialist</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RITURAJ GOGOI | UAV & GIS Specialist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo">Rituraj Gogoi</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects & Viewers</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="hero" id="about">
-    <div class="hero-content">
-      <h1>Drone Data Analyst & Photogrammetry Specialist</h1>
-      <p>Transforming aerial remote sensing data into actionable 2D orthomosaics, digital elevation models, and high-precision 3D digital twins.</p>
-      <div class="pill-tags">
-        <span>Photogrammetry</span>
-        <span>LiDAR & Orthomosaic Processing</span>
-        <span>GIS / Remote Sensing</span>
-        <span>3D Reality Meshes</span>
+  <!-- Landing / Welcome Screen Animation -->
+  <div id="intro-screen">
+    <div class="intro-box">
+      <div class="glow-backdrop"></div>
+      <img src="./Logo.png" alt="Rituraj Gogoi" class="intro-logo" />
+      <h1 class="intro-title">RITURAJ GOGOI</h1>
+      <p class="intro-sub">UAV Survey & Spatial Intelligence</p>
+      <div class="intro-progress-track">
+        <div class="intro-progress-bar"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Dedicated Modal Screen for Interactive Viewers -->
+  <div id="viewer-modal" class="modal-overlay">
+    <div class="modal-bar">
+      <div class="modal-title-wrap">
+        <span class="pulse-dot"></span>
+        <h4 id="modal-title">Live Viewer</h4>
+      </div>
+      <div class="modal-controls">
+        <a id="modal-external-link" href="#" target="_blank" rel="noopener noreferrer" title="Open in new window">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
+        </a>
+        <button class="modal-close" onclick="closeViewerModal()" title="Close Viewer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+    <div class="modal-frame-wrapper">
+      <div class="frame-loader" id="frame-loader">
+        <div class="spinner"></div>
+        <span>Streaming spatial environment...</span>
+      </div>
+      <iframe id="viewer-iframe" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="navbar">
+    <div class="nav-left">
+      <button class="tab-link active" onclick="switchTab('work', this)">WORK</button>
+      <button class="tab-link" onclick="switchTab('about', this)">ABOUT ME</button>
+      <button class="tab-link" onclick="switchTab('contact', this)">CONTACT</button>
+    </div>
+    <div class="nav-center">
+      <img src="./Logo.png" alt="Logo" class="nav-logo" />
+      <span>RITURAJ GOGOI</span>
+    </div>
+    <div class="nav-right">
+      <a href="https://github.com/rituraj21188" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
     </div>
   </header>
 
-  <!-- Interactive Viewers / Projects Section -->
-  <section class="section" id="projects">
-    <h2 class="section-title">Interactive Geospatial Work</h2>
-    <p class="section-subtitle">Interact directly with live orthomosaics, elevation models, and 3D point cloud reconstructions below.</p>
+  <main class="page-container">
 
-    <!-- Project 1: Mine Site Ortho & Elevation Viewer -->
-    <article class="project-card">
-      <div class="project-header">
-        <div>
-          <h3>Mine Site Orthomosaic & Terrain Viewer</h3>
-          <p class="project-desc">High-resolution mine site survey layer with multi-band display, elevation data, and terrain analysis.</p>
+    <!-- TAB 1: WORK (Interactive Cards) -->
+    <section id="tab-work" class="tab-section active">
+      <div class="section-badge">INTERACTIVE PLATFORMS</div>
+      <h2 class="section-heading">PROJECT VIEWERS</h2>
+      
+      <div class="project-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="card-visual ortho-visual">
+            <div class="visual-tag">2D GIS & RASTER</div>
+            <div class="visual-icon"><i class="fa-solid fa-map"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Mine Site Orthomosaic & Terrain Viewer</h3>
+            <p>Comprehensive raster survey application featuring layered RGB orthomosaic maps, dynamic digital surface models (DSM), and digital terrain models (DTM) with real-time opacity controls.</p>
+            <div class="meta-tags">
+              <span>Leaflet</span>
+              <span>TMS Tiles</span>
+              <span>Elevation Mapping</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn-primary" onclick="openViewerModal('Mine Site Orthomosaic Viewer', 'https://rituraj21188.github.io/mine-site-viewer/')">
+                <i class="fa-solid fa-play"></i> Launch Viewer
+              </button>
+              <a href="https://rituraj21188.github.io/mine-site-viewer/" target="_blank" class="btn-ghost">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
+              </a>
+            </div>
+          </div>
         </div>
-        <a href="https://rituraj21188.github.io/mine-site-viewer/" target="_blank" rel="noopener noreferrer" class="btn-external">
-          <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen
-        </a>
-      </div>
-      <div class="viewer-wrapper">
-        <iframe 
-          src="https://rituraj21188.github.io/mine-site-viewer/" 
-          title="Mine Site Orthomosaic Viewer" 
-          loading="lazy" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    </article>
 
-    <!-- Project 2: Dual 2D & 3D Spatial Viewer -->
-    <article class="project-card">
-      <div class="project-header">
-        <div>
-          <h3>Interactive 2D & 3D Geospatial Viewer</h3>
-          <p class="project-desc">Side-by-side / toggled view of 2D boundary layers alongside dense 3D point clouds and reality mesh rendering.</p>
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="card-visual mesh-visual">
+            <div class="visual-tag">3D POINT CLOUD & MESH</div>
+            <div class="visual-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>2D Boundary & 3D Spatial Point Cloud Viewer</h3>
+            <p>Dual-space photogrammetry inspection tool. Real-time rendering of dense photogrammetric point clouds, camera angle controls, and terrain contour lines.</p>
+            <div class="meta-tags">
+              <span>Three.js</span>
+              <span>PLY Loader</span>
+              <span>3D Orbit Controls</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn-primary" onclick="openViewerModal('2D & 3D Spatial Viewer', 'https://rituraj21188.github.io/2D-3D/')">
+                <i class="fa-solid fa-play"></i> Launch Viewer
+              </button>
+              <a href="https://rituraj21188.github.io/2D-3D/" target="_blank" class="btn-ghost">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
+              </a>
+            </div>
+          </div>
         </div>
-        <a href="https://rituraj21188.github.io/2D-3D/" target="_blank" rel="noopener noreferrer" class="btn-external">
-          <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen
-        </a>
       </div>
-      <div class="viewer-wrapper">
-        <iframe 
-          src="https://rituraj21188.github.io/2D-3D/" 
-          title="2D & 3D Geospatial Viewer" 
-          loading="lazy" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    </article>
-  </section>
+    </section>
 
-  <!-- Skills & Toolkit Section -->
-  <section class="section" id="skills">
-    <h2 class="section-title">Technical Expertise</h2>
-    <div class="skills-grid">
-      <div class="skill-box">
-        <h4>Photogrammetry & Processing</h4>
-        <p>WebODM, Agisoft Metashape, Pix4D, DJI Terra, CloudCompare</p>
-      </div>
-      <div class="skill-box">
-        <h4>GIS & Remote Sensing</h4>
-        <p>QGIS, ArcGIS Pro, Google Earth Engine, GeoTIFF, DEM/DSM/DTM Generation</p>
-      </div>
-      <div class="skill-box">
-        <h4>Web GIS & 3D Visualization</h4>
-        <p>CesiumJS, Potree, Leaflet, MapLibre, 3D Tiles, Cloud-Optimized GeoTIFFs (COG)</p>
-      </div>
-    </div>
-  </section>
+    <!-- TAB 2: ABOUT ME -->
+    <section id="tab-about" class="tab-section">
+      <div class="section-badge">PROFILE & INDUSTRY BACKGROUND</div>
+      <h2 class="section-heading">ABOUT ME</h2>
+      
+      <div class="about-container">
+        <div class="about-statement">
+          <p class="lead-text">
+            Having past experience of more than ten years in professional-grade UAV survey works, end-to-end project closure for industries in <strong>mining</strong>, <strong>archaeological</strong>, <strong>oil & natural gas</strong>, <strong>power and infrastructure</strong>, <strong>NHAI</strong>, and <strong>Ministry of Defence</strong> sectors.
+          </p>
+        </div>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <p>&copy; 2026 Rituraj Gogoi. Hosted with GitHub Pages.</p>
-  </footer>
+        <div class="industry-grid">
+          <div class="ind-pill"><i class="fa-solid fa-mountain"></i> Mining Operations</div>
+          <div class="ind-pill"><i class="fa-solid fa-landmark"></i> Archaeological Sites</div>
+          <div class="ind-pill"><i class="fa-solid fa-fire-flame-simple"></i> Oil & Natural Gas</div>
+          <div class="ind-pill"><i class="fa-solid fa-bolt"></i> Power & Infrastructure</div>
+          <div class="ind-pill"><i class="fa-solid fa-road"></i> NHAI Road Corridors</div>
+          <div class="ind-pill"><i class="fa-solid fa-shield-halved"></i> Ministry of Defence</div>
+        </div>
+
+        <div class="capabilities-box">
+          <h3>Core Technical Deliverables</h3>
+          <div class="chips">
+            <span>UAV Mission Planning</span>
+            <span>GCP & RTK/PPK Positioning</span>
+            <span>High-Res Orthomosaics</span>
+            <span>DSM / DTM / Contours</span>
+            <span>3D Digital Twins</span>
+            <span>Volumetric Stockpile Audits</span>
+            <span>LiDAR Classification</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: CONTACT -->
+    <section id="tab-contact" class="tab-section">
+      <div class="section-badge">INQUIRIES</div>
+      <h2 class="section-heading">CONTACT</h2>
+      
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-row">
+          <label>NAME *</label>
+          <input type="text" name="name" placeholder="YOUR NAME..." required />
+        </div>
+        <div class="form-row">
+          <label>EMAIL ADDRESS *</label>
+          <input type="email" name="_replyto" placeholder="YOUR EMAIL ADDRESS..." required />
+        </div>
+        <div class="form-row">
+          <label>MESSAGE *</label>
+          <textarea name="message" rows="6" placeholder="YOUR MESSAGE..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">SUBMIT</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script>
+    // Tab Switching
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+      
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal Interactive Viewer Management
+    const modal = document.getElementById('viewer-modal');
+    const iframe = document.getElementById('viewer-iframe');
+    const modalTitle = document.getElementById('modal-title');
+    const modalExtLink = document.getElementById('modal-external-link');
+    const loader = document.getElementById('frame-loader');
+
+    function openViewerModal(title, url) {
+      modalTitle.innerText = title;
+      modalExtLink.href = url;
+      loader.style.display = 'flex';
+      iframe.src = url;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      iframe.onload = () => {
+        loader.style.display = 'none';
+      };
+    }
+
+    function closeViewerModal() {
+      modal.classList.remove('open');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // ESC key closes viewer
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeViewerModal();
+      }
+    });
+
+    // Landing screen transition
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const intro = document.getElementById('intro-screen');
+        intro.classList.add('hide');
+        setTimeout(() => intro.remove(), 800);
+      }, 2100);
+    });
+  </script>
 
 </body>
 </html>
