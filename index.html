@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RITURAJ GOGOI | UAV & GIS Specialist</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>RITURAJ GOGOI | Spatial Intelligence & UAV Systems</title>
+  <!-- Festina Typography: Sans + Technical Monospace -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Landing / Welcome Screen Animation -->
+  <!-- ======================================================== -->
+  <!-- 1. INTRO SCREEN (PRESERVED AS IS) -->
+  <!-- ======================================================== -->
   <div id="intro-screen">
     <div class="intro-box">
       <div class="glow-backdrop"></div>
@@ -22,16 +28,18 @@
     </div>
   </div>
 
-  <!-- Dedicated Modal Screen for Interactive Viewers -->
+  <!-- ======================================================== -->
+  <!-- 2. INTERACTIVE VIEWER MODAL (PRESERVED AS IS) -->
+  <!-- ======================================================== -->
   <div id="viewer-modal" class="modal-overlay">
     <div class="modal-bar">
       <div class="modal-title-wrap">
         <span class="pulse-dot"></span>
-        <h4 id="modal-title">Live Viewer</h4>
+        <h4 id="modal-title">Live Spatial Pipeline</h4>
       </div>
       <div class="modal-controls">
         <a id="modal-external-link" href="#" target="_blank" rel="noopener noreferrer" title="Open in new window">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Raw Instance
         </a>
         <button class="modal-close" onclick="closeViewerModal()" title="Close Viewer">
           <i class="fa-solid fa-xmark"></i>
@@ -47,173 +55,321 @@
     </div>
   </div>
 
-  <!-- Main Navigation Header -->
-  <header class="navbar">
-    <div class="nav-left">
-      <button class="tab-link active" onclick="switchTab('work', this)">WORK</button>
-      <button class="tab-link" onclick="switchTab('about', this)">ABOUT ME</button>
-      <button class="tab-link" onclick="switchTab('contact', this)">CONTACT</button>
-    </div>
-    <div class="nav-center">
-      <img src="./Logo.png" alt="Logo" class="nav-logo" />
-      <span>RITURAJ GOGOI</span>
-    </div>
-  </header>
+  <!-- ======================================================== -->
+  <!-- 3. FESTINA-INSPIRED TECH FRAMEWORK -->
+  <!-- ======================================================== -->
+  <div class="site-wrapper">
 
-  <main class="page-container">
-
-    <!-- TAB 1: WORK (Interactive Cards) -->
-    <section id="tab-work" class="tab-section active">
-      <div class="section-badge">INTERACTIVE PLATFORMS</div>
-      <h2 class="section-heading">SPATIAL DEMOS</h2>
-      
-      <div class="project-grid">
-        <!-- Project 1: Mine Site Viewer -->
-        <div class="project-card">
-          <div class="card-visual ortho-visual">
-            <div class="visual-tag">2D GIS & RASTER</div>
-            <div class="visual-icon"><i class="fa-solid fa-map"></i></div>
-          </div>
-          <div class="card-body">
-            <h3>Mine Site Orthomosaic & Terrain Viewer</h3>
-            <p>Comprehensive raster survey application featuring layered RGB orthomosaic maps, dynamic digital surface models (DSM), and digital terrain models (DTM) with real-time opacity controls.</p>
-            <div class="meta-tags">
-              <span>Leaflet</span>
-              <span>TMS Tiles</span>
-              <span>Elevation Mapping</span>
-            </div>
-            <div class="card-actions">
-              <button class="btn-primary" onclick="openViewerModal('Mine Site Orthomosaic Viewer', 'https://rituraj21188.github.io/mine-site-viewer/')">
-                <i class="fa-solid fa-play"></i> Launch Viewer
-              </button>
-              <a href="https://rituraj21188.github.io/mine-site-viewer/" target="_blank" class="btn-ghost">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2: 2D/3D Point Cloud Viewer -->
-        <div class="project-card">
-          <div class="card-visual mesh-visual">
-            <div class="visual-tag">3D POINT CLOUD & MESH</div>
-            <div class="visual-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
-          </div>
-          <div class="card-body">
-            <h3>2D Boundary & 3D Spatial Point Cloud Viewer</h3>
-            <p>Dual-space photogrammetry inspection tool. Real-time rendering of dense photogrammetric point clouds, camera angle controls, and terrain contour lines.</p>
-            <div class="meta-tags">
-              <span>Three.js</span>
-              <span>PLY Loader</span>
-              <span>3D Orbit Controls</span>
-            </div>
-            <div class="card-actions">
-              <button class="btn-primary" onclick="openViewerModal('2D & 3D Spatial Viewer', 'https://rituraj21188.github.io/2D-3D/')">
-                <i class="fa-solid fa-play"></i> Launch Viewer
-              </button>
-              <a href="https://rituraj21188.github.io/2D-3D/" target="_blank" class="btn-ghost">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3: Tree Canopy & Automated Plant Detection -->
-        <div class="project-card">
-          <div class="card-visual canopy-visual">
-            <div class="visual-tag">AI COMPUTER VISION & GIS</div>
-            <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
-          </div>
-          <div class="card-body">
-            <h3>Tree Canopy & Plant Detection AI Viewer</h3>
-            <p>High-resolution agricultural orthomosaic analytics platform. Features client-side spectral computer vision (ExG), radar sweep animations, automated crown sizing, and 1-click GeoJSON boundary export.</p>
-            <div class="meta-tags">
-              <span>Spectral Vision</span>
-              <span>ExG Index</span>
-              <span>GeoJSON Export</span>
-              <span>TMS Tiles</span>
-            </div>
-            <div class="card-actions">
-              <button class="btn-primary" onclick="openViewerModal('Tree Canopy AI Detection Viewer', 'https://rituraj21188.github.io/Tree-Canopy-Automated-Plant-Detection-Viewer/')">
-                <i class="fa-solid fa-play"></i> Launch Viewer
-              </button>
-              <a href="https://rituraj21188.github.io/Tree-Canopy-Automated-Plant-Detection-Viewer/" target="_blank" class="btn-ghost">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- Top Telemetry & Switcher Navigation -->
+    <header class="navbar">
+      <div class="nav-left">
+        <a href="#" class="brand-tag">
+          <img src="./Logo.png" alt="Logo" class="nav-logo" />
+          <span class="mono brand-title">RG // SPATIAL_OPS</span>
+        </a>
       </div>
-    </section>
 
-    <!-- TAB 2: ABOUT ME -->
-    <section id="tab-about" class="tab-section">
-      <div class="section-badge">PROFILE & INDUSTRY BACKGROUND</div>
-      <h2 class="section-heading">ABOUT ME</h2>
-      
-      <div class="about-container">
-        <div class="about-statement">
-          <p class="lead-text">
-            Having past experience of more than ten years in professional-grade UAV survey works, end-to-end project closure for industries in <strong>mining</strong>, <strong>archaeological</strong>, <strong>oil & natural gas</strong>, <strong>power and infrastructure</strong>, <strong>NHAI</strong>, and <strong>Ministry of Defence</strong> sectors.
-          </p>
-        </div>
+      <div class="nav-center telemetry mono hide-mobile">
+        <span class="telemetry-item"><span class="pulse-dot"></span> SYS: ACTIVE</span>
+        <span class="telemetry-item">CRS: EPSG:4326</span>
+        <span class="telemetry-item">EXP: 10+ YRS</span>
+      </div>
 
-        <div class="industry-grid">
-          <div class="ind-pill"><i class="fa-solid fa-mountain"></i> Mining Operations</div>
-          <div class="ind-pill"><i class="fa-solid fa-landmark"></i> Archaeological Sites</div>
-          <div class="ind-pill"><i class="fa-solid fa-fire-flame-simple"></i> Oil & Natural Gas</div>
-          <div class="ind-pill"><i class="fa-solid fa-bolt"></i> Power & Infrastructure</div>
-          <div class="ind-pill"><i class="fa-solid fa-road"></i> NHAI Road Corridors</div>
-          <div class="ind-pill"><i class="fa-solid fa-shield-halved"></i> Ministry of Defence</div>
-        </div>
+      <nav class="nav-right">
+        <button class="tab-link active mono" onclick="switchTab('work', this)">[ 01 ] WORK</button>
+        <button class="tab-link mono" onclick="switchTab('services', this)">[ 02 ] SERVICES</button>
+        <button class="tab-link mono" onclick="switchTab('about', this)">[ 03 ] PROFILE</button>
+        <button class="tab-link mono" onclick="switchTab('contact', this)">[ 04 ] CONTACT</button>
+      </nav>
+    </header>
 
-        <div class="capabilities-box">
-          <h3>Core Technical Deliverables</h3>
-          <div class="chips">
-            <span>UAV Mission Planning</span>
-            <span>GCP & RTK/PPK Positioning</span>
-            <span>High-Res Orthomosaics</span>
-            <span>DSM / DTM / Contours</span>
-            <span>3D Digital Twins</span>
-            <span>Volumetric Stockpile Audits</span>
-            <span>LiDAR Classification</span>
+    <main class="page-container">
+
+      <!-- ==================== TAB 1: WORK ==================== -->
+      <section id="tab-work" class="tab-section active">
+        <!-- Technical Hero Banner -->
+        <div class="hero-strip">
+          <div class="mono hero-code">[ SYSTEM ARCHITECTURE // LIVE DEPLOYMENTS ]</div>
+          <h1 class="hero-lead">High-density remote sensing, classified LiDAR, and autonomous geospatial models.</h1>
+          <div class="hero-stats-grid">
+            <div class="stat-col">
+              <span class="mono stat-num">SUB-CENTIMETER</span>
+              <span class="stat-desc">RTK / PPK Orthomosaic Precision</span>
+            </div>
+            <div class="stat-col">
+              <span class="mono stat-num">CLASSIFIED CLOUDS</span>
+              <span class="stat-desc">LiDAR & Photogrammetric 3D Meshes</span>
+            </div>
+            <div class="stat-col">
+              <span class="mono stat-num">SPECTRAL AI</span>
+              <span class="stat-desc">Edge Biomass & Canopy Computer Vision</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- TAB 3: CONTACT -->
-    <section id="tab-contact" class="tab-section">
-      <div class="section-badge">INQUIRIES</div>
-      <h2 class="section-heading">CONTACT</h2>
-      
-      <form class="contact-form" action="https://formspree.io/f/mbgjaooo" method="POST">
-        <div class="form-row">
-          <label>NAME *</label>
-          <input type="text" name="name" placeholder="YOUR NAME..." required />
+        <div class="section-meta-bar">
+          <span class="mono">// INTERACTIVE PRODUCTION ENVIRONMENTS</span>
+          <span class="mono">COUNT: 03</span>
         </div>
-        <div class="form-row">
-          <label>EMAIL ADDRESS *</label>
-          <input type="email" name="_replyto" placeholder="YOUR EMAIL ADDRESS..." required />
-        </div>
-        <div class="form-row">
-          <label>MESSAGE *</label>
-          <textarea name="message" rows="6" placeholder="YOUR MESSAGE..." required></textarea>
-        </div>
-        <button type="submit" class="submit-btn">SUBMIT</button>
-      </form>
-    </section>
 
-  </main>
+        <div class="festina-grid">
+          <!-- Project 01 -->
+          <article class="project-card">
+            <div class="card-meta mono">
+              <span>SYS_REF: 001</span>
+              <span>2D GIS // RASTER ENGINE</span>
+            </div>
+            <div class="card-visual ortho-visual">
+              <div class="visual-tag mono">LEAFLET // TMS TILES</div>
+              <div class="visual-icon"><i class="fa-solid fa-map"></i></div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Mine Site Orthomosaic & Terrain Viewer</h3>
+              <p class="card-desc">
+                High-resolution raster survey platform serving tiled RGB orthomosaics, dynamic Digital Surface Models (DSM), and Digital Terrain Models (DTM) with real-time gradient and opacity controls.
+              </p>
+              <div class="spec-table mono">
+                <div class="spec-row"><span>PIPELINE:</span><span>Leaflet TMS, Geotiff, GDAL</span></div>
+                <div class="spec-row"><span>RESOLUTION:</span><span>Sub-5cm Ground Sampling Distance</span></div>
+                <div class="spec-row"><span>ANALYTICS:</span><span>Real-Time Elevation Gradient & DTM</span></div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-primary mono" onclick="openViewerModal('Mine Site Orthomosaic Viewer', 'https://rituraj21188.github.io/mine-site-viewer/')">
+                  <i class="fa-solid fa-play"></i> LAUNCH SYSTEM
+                </button>
+                <a href="https://rituraj21188.github.io/mine-site-viewer/" target="_blank" class="btn-ghost mono">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> RAW_TAB
+                </a>
+              </div>
+            </div>
+          </article>
 
+          <!-- Project 02 -->
+          <article class="project-card">
+            <div class="card-meta mono">
+              <span>SYS_REF: 002</span>
+              <span>3D MESH // SPATIAL LIDAR</span>
+            </div>
+            <div class="card-visual mesh-visual">
+              <div class="visual-tag mono">THREE.JS // WEBGL</div>
+              <div class="visual-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">2D Boundary & 3D Point Cloud Inspector</h3>
+              <p class="card-desc">
+                Dual-space photogrammetric inspection environment. Real-time rendering of millions of classified points, custom camera frustums, orbit inspection, and elevation contours.
+              </p>
+              <div class="spec-table mono">
+                <div class="spec-row"><span>PIPELINE:</span><span>Three.js, PLY/LAS Parser, WebGL</span></div>
+                <div class="spec-row"><span>GEOMETRY:</span><span>Dense Classified Point Mesh</span></div>
+                <div class="spec-row"><span>CONTROLS:</span><span>Full 6-DoF Orbit Camera Inspection</span></div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-primary mono" onclick="openViewerModal('2D & 3D Spatial Viewer', 'https://rituraj21188.github.io/2D-3D/')">
+                  <i class="fa-solid fa-play"></i> LAUNCH SYSTEM
+                </button>
+                <a href="https://rituraj21188.github.io/2D-3D/" target="_blank" class="btn-ghost mono">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> RAW_TAB
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 03 -->
+          <article class="project-card">
+            <div class="card-meta mono">
+              <span>SYS_REF: 003</span>
+              <span>SPECTRAL AI // CANOPY DETECT</span>
+            </div>
+            <div class="card-visual canopy-visual">
+              <div class="visual-tag mono">EXG INDEX // COMPUTER VISION</div>
+              <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Tree Canopy & Plant Detection AI Viewer</h3>
+              <p class="card-desc">
+                Autonomous plant counting and crown canopy segmentation running client-side computer vision algorithms (ExG index) over orthomosaics with instantaneous GeoJSON boundary vectors.
+              </p>
+              <div class="spec-table mono">
+                <div class="spec-row"><span>PIPELINE:</span><span>Computer Vision (ExG), Canvas2D, GeoJSON</span></div>
+                <div class="spec-row"><span>DETECTION:</span><span>Automated Crown Radius & Counting</span></div>
+                <div class="spec-row"><span>OUTPUT:</span><span>1-Click Polygons Vector Export</span></div>
+              </div>
+              <div class="card-actions">
+                <button class="btn-primary mono" onclick="openViewerModal('Tree Canopy AI Detection Viewer', 'https://rituraj21188.github.io/Tree-Canopy-Automated-Plant-Detection-Viewer/')">
+                  <i class="fa-solid fa-play"></i> LAUNCH SYSTEM
+                </button>
+                <a href="https://rituraj21188.github.io/Tree-Canopy-Automated-Plant-Detection-Viewer/" target="_blank" class="btn-ghost mono">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> RAW_TAB
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 2: SERVICES ==================== -->
+      <section id="tab-services" class="tab-section">
+        <div class="section-meta-bar">
+          <span class="mono">[ 02 // TECHNICAL SERVICES & SPECS ]</span>
+          <span class="mono">MISSION PROVEN</span>
+        </div>
+
+        <div class="services-spec-grid">
+          <div class="service-spec-card">
+            <div class="mono card-index">SPEC // 01</div>
+            <h3>Aerial LiDAR & Classified Point Clouds</h3>
+            <p>Canopy penetration and structure digitization producing bare-earth digital terrain models (DTM), contour topographies, and millimeter-grade structural meshes.</p>
+            <ul class="spec-items mono">
+              <li><span>&gt;</span> .LAS / .LAZ Dense Clouds</li>
+              <li><span>&gt;</span> Structural Digital Twins</li>
+              <li><span>&gt;</span> Ground vs. Non-Ground Stratification</li>
+            </ul>
+          </div>
+
+          <div class="service-spec-card">
+            <div class="mono card-index">SPEC // 02</div>
+            <h3>Large-Scale Photogrammetry & Orthomosaics</h3>
+            <p>Centimeter-grade georeferenced orthomosaics mapped with RTK/PPK GNSS positioning and ground control point (GCP) network validation for legal and engineering sign-off.</p>
+            <ul class="spec-items mono">
+              <li><span>&gt;</span> Sub-cm GSD Geotiffs</li>
+              <li><span>&gt;</span> GCP Distribution & Accuracy Reports</li>
+              <li><span>&gt;</span> Cadastral Boundary Overlays</li>
+            </ul>
+          </div>
+
+          <div class="service-spec-card">
+            <div class="mono card-index">SPEC // 03</div>
+            <h3>Volumetric Stockpile & Earthwork Audits</h3>
+            <p>Repeated UAV temporal mapping for open-cast mines, quarries, and highway cuttings to yield precise cut-and-fill volume computations against design baselines.</p>
+            <ul class="spec-items mono">
+              <li><span>&gt;</span> Cut/Fill Volumetric Differential</li>
+              <li><span>&gt;</span> Watershed Runoff & Slope Gradients</li>
+              <li><span>&gt;</span> Progress CAD Alignment Verification</li>
+            </ul>
+          </div>
+
+          <div class="service-spec-card">
+            <div class="mono card-index">SPEC // 04</div>
+            <h3>Enterprise WebGIS & Spatial Stack</h3>
+            <p>Custom pipeline integration for cloud spatial consumption. Converting massive geodata into low-latency TMS vector/raster tiles, Three.js 3D viewers, and shapefiles.</p>
+            <ul class="spec-items mono">
+              <li><span>&gt;</span> WebGL / Three.js 3D Integrations</li>
+              <li><span>&gt;</span> Leaflet / Mapbox Custom TMS Tile Sets</li>
+              <li><span>&gt;</span> GeoJSON, Shapefile, PostGIS Layers</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 3: ABOUT / PROFILE ==================== -->
+      <section id="tab-about" class="tab-section">
+        <div class="section-meta-bar">
+          <span class="mono">[ 03 // INDUSTRY TRACK RECORD & SECTORS ]</span>
+          <span class="mono">TENURE: 10+ YEARS</span>
+        </div>
+
+        <div class="profile-layout">
+          <div class="profile-narrative">
+            <div class="mono narrative-tag">EXECUTIVE SUMMARY</div>
+            <h2 class="narrative-heading">Over a decade executing mission-critical aerial survey operations and spatial data workflows.</h2>
+            <p class="narrative-body">
+              Specialized in end-to-end aerial program execution—from mission planning, RTK/PPK GNSS baseline management, and autonomous capture to raw data ingestion, LiDAR classification, photogrammetric reconstruction, and custom web deployment.
+            </p>
+          </div>
+
+          <div class="festina-matrix-box">
+            <div class="mono matrix-header">VALIDATED INDUSTRIAL DOMAINS</div>
+            <div class="matrix-grid">
+              <div class="matrix-cell"><i class="fa-solid fa-shield-halved"></i> <span>Ministry of Defence</span></div>
+              <div class="matrix-cell"><i class="fa-solid fa-road"></i> <span>NHAI Highway Corridors</span></div>
+              <div class="matrix-cell"><i class="fa-solid fa-mountain"></i> <span>Open-Cast Mining Operations</span></div>
+              <div class="matrix-cell"><i class="fa-solid fa-fire-flame-simple"></i> <span>Oil & Natural Gas Assets</span></div>
+              <div class="matrix-cell"><i class="fa-solid fa-bolt"></i> <span>Power & Substation Corridors</span></div>
+              <div class="matrix-cell"><i class="fa-solid fa-landmark"></i> <span>Archaeological Topographies</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Software Stack Row -->
+        <div class="tech-stack-strip">
+          <div class="stack-col-title mono">CORE TOOLCHAIN</div>
+          <div class="stack-col-tags">
+            <span class="tech-chip">Pix4Dmapper</span>
+            <span class="tech-chip">Agisoft Metashape</span>
+            <span class="tech-chip">DJI Terra</span>
+            <span class="tech-chip">CloudCompare</span>
+            <span class="tech-chip">QGIS Pro</span>
+            <span class="tech-chip">ArcGIS</span>
+            <span class="tech-chip">GDAL / OGR</span>
+            <span class="tech-chip">Three.js</span>
+            <span class="tech-chip">Leaflet</span>
+            <span class="tech-chip">PostGIS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 4: CONTACT ==================== -->
+      <section id="tab-contact" class="tab-section">
+        <div class="section-meta-bar">
+          <span class="mono">[ 04 // SECURE COMMUNICATION CHANNEL ]</span>
+          <span class="mono">STATUS: OPEN FOR WORK</span>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-info-col">
+            <h2 class="contact-headline">Initiate project consultation or technical commission.</h2>
+            <p class="contact-sub">Available for enterprise contracts, aerial LiDAR missions, and bespoke WebGIS application development.</p>
+            
+            <div class="contact-meta-table mono">
+              <div class="meta-line"><span>LOCATION:</span><span>India / Global Remote Deployments</span></div>
+              <div class="meta-line"><span>SPECIALIZATION:</span><span>UAV Remote Sensing & WebGIS</span></div>
+              <div class="meta-line"><span>AVAILABILITY:</span><span>Direct Contract / Advisory</span></div>
+            </div>
+          </div>
+
+          <div class="contact-form-col">
+            <form class="contact-form" action="https://formspree.io/f/mbgjaooo" method="POST">
+              <div class="form-row">
+                <label class="mono">IDENTIFIER // NAME *</label>
+                <input type="text" name="name" placeholder="Enter full name..." required />
+              </div>
+              <div class="form-row">
+                <label class="mono">DISPATCH // EMAIL ADDRESS *</label>
+                <input type="email" name="_replyto" placeholder="name@domain.com" required />
+              </div>
+              <div class="form-row">
+                <label class="mono">TRANSMISSION // MESSAGE *</label>
+                <textarea name="message" rows="5" placeholder="Detail project parameters, sensor requirements, or coordinates..." required></textarea>
+              </div>
+              <button type="submit" class="submit-btn mono">TRANSMIT MESSAGE ↗</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Festina Minimal Tech Footer -->
+    <footer class="tech-footer mono">
+      <div class="footer-left">© RITURAJ GOGOI // SPATIAL INTELLIGENCE & UAV SYSTEMS</div>
+      <div class="footer-right">ENGINEERED FOR GITHUB PAGES</div>
+    </footer>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 4. LOGIC ENGINE (TABS, MODALS, LOADERS) -->
+  <!-- ======================================================== -->
   <script>
     // Tab Switching
     function switchTab(tabId, btn) {
       document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
       
-      document.getElementById('tab-' + tabId).classList.add('active');
-      btn.classList.add('active');
+      const targetSec = document.getElementById('tab-' + tabId);
+      if (targetSec) targetSec.classList.add('active');
+      if (btn) btn.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -243,7 +399,7 @@
       document.body.style.overflow = '';
     }
 
-    // ESC key closes viewer
+    // ESC key closes modal
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('open')) {
         closeViewerModal();
@@ -254,8 +410,10 @@
     window.addEventListener('load', () => {
       setTimeout(() => {
         const intro = document.getElementById('intro-screen');
-        intro.classList.add('hide');
-        setTimeout(() => intro.remove(), 800);
+        if (intro) {
+          intro.classList.add('hide');
+          setTimeout(() => intro.remove(), 800);
+        }
       }, 2100);
     });
   </script>
