@@ -257,70 +257,85 @@ body {
   font-weight: 700;
 }
 
-/* 1. CARD 1: VIBRANT OCEAN / CYAN */
-.project-card:nth-child(1) .ortho-visual {
+/* 1. Mine Site Sentinel (Ocean / Cyan) */
+.ortho-visual,
+.project-card:nth-child(1) .card-visual {
   background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.4) 0%, transparent 50%),
-              linear-gradient(135deg, #0284c7 0%, #0369a1 40%, #082f49 100%);
+              linear-gradient(135deg, #0284c7 0%, #0369a1 40%, #082f49 100%) !important;
 }
+.ortho-tag,
 .project-card:nth-child(1) .visual-tag {
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
 }
+.project-card.ortho-card:hover,
 .project-card:nth-child(1):hover {
   transform: translateY(-6px);
   border-color: rgba(56, 189, 248, 0.5);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
 }
+.btn-mine,
 .project-card:nth-child(1) .btn-primary {
-  background: #38bdf8;
-  color: #031320;
+  background: #38bdf8 !important;
+  color: #031320 !important;
 }
+.btn-mine:hover,
 .project-card:nth-child(1) .btn-primary:hover {
-  background: #7dd3fc;
+  background: #7dd3fc !important;
 }
 
-/* 2. CARD 2: VIBRANT ELECTRIC PURPLE */
-.project-card:nth-child(2) .mesh-visual {
+/* 2. Tea Plantation Sentinel (Electric Purple) */
+.canopy-visual,
+.project-card:nth-child(2) .card-visual {
   background: radial-gradient(circle at 80% 20%, rgba(192, 132, 252, 0.45) 0%, transparent 50%),
-              linear-gradient(135deg, #7e22ce 0%, #6b21a8 45%, #2e1065 100%);
+              linear-gradient(135deg, #7e22ce 0%, #6b21a8 45%, #2e1065 100%) !important;
 }
+.canopy-tag,
 .project-card:nth-child(2) .visual-tag {
-  color: #c084fc;
-  border: 1px solid rgba(192, 132, 252, 0.3);
+  color: #c084fc !important;
+  border: 1px solid rgba(192, 132, 252, 0.3) !important;
 }
+.project-card.canopy-card:hover,
 .project-card:nth-child(2):hover {
   transform: translateY(-6px);
   border-color: rgba(192, 132, 252, 0.5);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(192, 132, 252, 0.2);
 }
+.btn-tea,
 .project-card:nth-child(2) .btn-primary {
-  background: #c084fc;
-  color: #1e0538;
+  background: #c084fc !important;
+  color: #1e0538 !important;
 }
+.btn-tea:hover,
 .project-card:nth-child(2) .btn-primary:hover {
-  background: #d8b4fe;
+  background: #d8b4fe !important;
 }
 
-/* 3. CARD 3: VIBRANT EMERALD / NEON GREEN */
-.project-card:nth-child(3) .canopy-visual {
+/* 3. 2D/3D Point Cloud (Emerald / Green) */
+.mesh-visual,
+.project-card:nth-child(3) .card-visual {
   background: radial-gradient(circle at 80% 20%, rgba(52, 211, 153, 0.45) 0%, transparent 50%),
-              linear-gradient(135deg, #059669 0%, #047857 45%, #022c22 100%);
+              linear-gradient(135deg, #059669 0%, #047857 45%, #022c22 100%) !important;
 }
+.mesh-tag,
 .project-card:nth-child(3) .visual-tag {
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #34d399 !important;
+  border: 1px solid rgba(52, 211, 153, 0.3) !important;
 }
+.project-card.mesh-card:hover,
 .project-card:nth-child(3):hover {
   transform: translateY(-6px);
   border-color: rgba(52, 211, 153, 0.5);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(52, 211, 153, 0.2);
 }
+.btn-3d,
 .project-card:nth-child(3) .btn-primary {
-  background: #10b981;
-  color: #022218;
+  background: #10b981 !important;
+  color: #022218 !important;
 }
+.btn-3d:hover,
 .project-card:nth-child(3) .btn-primary:hover {
-  background: #34d399;
+  background: #34d399 !important;
 }
 
 /* Card Content Details */
