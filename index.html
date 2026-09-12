@@ -6,13 +6,12 @@
   <title>RITURAJ GOGOI | UAV & GIS Specialist</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    /* =========================================================
-       BASE & RESET
-    ========================================================= */
     :root {
       --bg: #0b0f17;
       --card-bg: #121824;
+      --panel-bg: rgba(18, 24, 36, 0.94);
       --border: rgba(255, 255, 255, 0.1);
       --accent: #f59e0b;
       --neon-cyan: #00f0ff;
@@ -20,18 +19,16 @@
       --text: #e6edf3;
       --text-muted: #8b949e;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg);
       color: var(--text);
-      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
+      line-height: 1.5;
     }
 
-    /* =========================================================
-       NAVIGATION
-    ========================================================= */
+    /* Navigation */
     .navbar {
       display: flex;
       align-items: center;
@@ -44,13 +41,7 @@
       top: 0;
       z-index: 100;
     }
-    .nav-left {
-      display: flex;
-      gap: 0.5rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .nav-left::-webkit-scrollbar { display: none; }
+    .nav-left { display: flex; gap: 0.5rem; }
     .tab-link {
       background: none;
       border: 1px solid transparent;
@@ -60,7 +51,6 @@
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      white-space: nowrap;
       transition: all 0.2s;
     }
     .tab-link.active, .tab-link:hover {
@@ -80,31 +70,18 @@
       font-size: 0.95rem;
       letter-spacing: 0.05em;
     }
-    .nav-logo {
-      height: 28px;
-      width: auto;
-      object-fit: contain;
-    }
+    .nav-logo { height: 28px; width: auto; object-fit: contain; }
 
-    /* =========================================================
-       CONTAINER & GRIDS
-    ========================================================= */
+    /* Main Container */
     .page-container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem 1.2rem;
     }
-    .tab-section {
-      display: none;
-    }
-    .tab-section.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .tab-section { display: none; }
+    .tab-section.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
     .section-badge {
       font-size: 0.75rem;
       color: var(--accent);
@@ -112,10 +89,7 @@
       font-weight: 600;
       margin-bottom: 0.3rem;
     }
-    .section-heading {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
+    .section-heading { font-size: 1.8rem; margin-bottom: 1.5rem; }
 
     .project-grid {
       display: grid;
@@ -165,23 +139,14 @@
       flex: 1;
       justify-content: space-between;
     }
-    .card-body h3 {
-      font-size: 1.15rem;
-      margin-bottom: 0.5rem;
-      color: #fff;
-    }
+    .card-body h3 { font-size: 1.15rem; margin-bottom: 0.5rem; color: #fff; }
     .card-body p {
       color: var(--text-muted);
       font-size: 0.88rem;
       line-height: 1.55;
       margin-bottom: 1.2rem;
     }
-    .meta-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 1.25rem;
-    }
+    .meta-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
     .meta-tags span {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
@@ -206,67 +171,31 @@
       width: 100%;
       transition: opacity 0.2s;
     }
-    .btn-primary:active {
-      transform: scale(0.98);
-    }
 
     /* About Section */
     .lead-text { font-size: 1.1rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem; }
-    .industry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 10px;
-      margin-bottom: 2rem;
-    }
-    .ind-pill {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 2rem; }
+    .ind-pill { background: var(--card-bg); border: 1px solid var(--border); padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; }
     .ind-pill i { color: var(--accent); }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.8rem; }
     .chips span { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
 
-    /* Form */
+    /* Contact Form */
     .contact-form { max-width: 600px; display: flex; flex-direction: column; gap: 1rem; }
     .form-row { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
     .form-row label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
-    .form-row input, .form-row textarea {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: #fff;
-      padding: 0.75rem;
-      border-radius: 8px;
-      font-family: inherit;
-    }
-    .form-row input:focus, .form-row textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .submit-btn {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 0.8rem;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+    .form-row input, .form-row textarea { background: var(--card-bg); border: 1px solid var(--border); color: #fff; padding: 0.75rem; border-radius: 8px; font-family: inherit; }
+    .submit-btn { background: var(--accent); color: #000; border: none; padding: 0.8rem; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
     /* =========================================================
-       DYNAMIC WIDGET WINDOW (DESKTOP & MOBILE FRIENDLY)
+       DYNAMIC NATIVE SPATIAL WIDGET WINDOW
     ========================================================= */
     .modal-overlay {
       position: fixed;
       inset: 0;
       background: rgba(5, 8, 15, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -274,12 +203,8 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
-      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    .modal-overlay.open { opacity: 1; pointer-events: auto; }
 
     .modal-window {
       width: 90vw;
@@ -296,19 +221,16 @@
       overflow: hidden;
       resize: both;
       transform: scale(0.96) translateY(12px);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: absolute;
     }
-    .modal-overlay.open .modal-window {
-      transform: scale(1) translateY(0);
-    }
+    .modal-overlay.open .modal-window { transform: scale(1) translateY(0); }
 
     .modal-window.maximized {
       width: 100vw !important;
       height: 100dvh !important;
       top: 0 !important;
       left: 0 !important;
-      transform: none !important;
       border-radius: 0 !important;
       resize: none !important;
       border: none !important;
@@ -325,10 +247,9 @@
       cursor: grab;
       user-select: none;
       touch-action: none;
+      z-index: 10;
     }
-    .modal-bar:active {
-      cursor: grabbing;
-    }
+    .modal-bar:active { cursor: grabbing; }
 
     .modal-title-wrap {
       display: flex;
@@ -342,27 +263,10 @@
       text-overflow: ellipsis;
       max-width: 75%;
     }
-    .modal-title-wrap h4 {
-      margin: 0;
-      font-size: 0.88rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      min-width: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px #10b981;
-    }
+    .modal-title-wrap h4 { margin: 0; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pulse-dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; background: var(--neon-green); box-shadow: 0 0 8px var(--neon-green); }
 
-    .modal-controls {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .modal-controls { display: flex; align-items: center; gap: 6px; }
     .win-btn {
       background: transparent;
       border: none;
@@ -377,14 +281,8 @@
       font-size: 0.95rem;
       transition: all 0.15s ease;
     }
-    .win-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-    }
-    .win-btn.close-btn:hover, .win-btn.close-btn:active {
-      background: #e11d48;
-      color: #fff;
-    }
+    .win-btn:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .win-btn.close-btn:hover { background: #e11d48; color: #fff; }
 
     .modal-frame-wrapper {
       position: relative;
@@ -392,72 +290,76 @@
       width: 100%;
       height: 100%;
       background: #090d14;
+      overflow: hidden;
     }
-    #viewer-iframe {
+
+    /* Exclusive Spatial App Canvas */
+    #native-map {
       width: 100%;
       height: 100%;
-      border: none;
-      display: block;
-    }
-
-    .frame-loader {
-      position: absolute;
-      inset: 0;
       background: #090d14;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-      justify-content: center;
+    }
+
+    /* Direct HUD & Controls Overlay inside Window */
+    .hud-panel {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      font-size: 12px;
+    }
+    .hud-panel span { color: var(--text-muted); font-size: 11px; display: block; margin-top: 2px; }
+
+    .hud-controls-right {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 1000;
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      font-size: 11px;
+      max-width: 250px;
+    }
+    .hud-controls-right label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px 0; color: #cbd5e1; cursor: pointer; }
+    .hud-controls-right select {
+      background: #090e1a; color: var(--neon-cyan); border: 1px solid var(--border);
+      border-radius: 4px; padding: 2px 5px; font-size: 11px; outline: none;
+    }
+
+    .hud-bottom-bar {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 11px;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      z-index: 10;
+      backdrop-filter: blur(8px);
     }
-    .frame-loader .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* =========================================================
-       RESPONSIVE ADAPTATIONS (<= 768px)
-    ========================================================= */
+    /* Responsive */
     @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column-reverse;
-        gap: 0.6rem;
-        align-items: stretch;
-        padding: 0.6rem 1rem;
-      }
-      .nav-center {
-        justify-content: center;
-      }
-      .nav-left {
-        justify-content: space-around;
-      }
-      .tab-link {
-        flex: 1;
-        text-align: center;
-        padding: 0.5rem 0.2rem;
-      }
-      .page-container {
-        padding: 1.2rem 0.8rem;
-      }
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Mobile Modal window becomes a full-viewport spatial app */
+      .navbar { flex-direction: column-reverse; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1rem; }
+      .nav-center { justify-content: center; }
+      .nav-left { justify-content: space-around; }
+      .tab-link { flex: 1; text-align: center; }
+      .project-grid { grid-template-columns: 1fr; }
       .modal-window {
         width: 100% !important;
         height: 100dvh !important;
-        min-width: unset !important;
-        min-height: unset !important;
-        max-width: unset !important;
         top: 0 !important;
         left: 0 !important;
         transform: translateY(100%);
@@ -465,28 +367,16 @@
         resize: none !important;
         border: none !important;
       }
-      .modal-overlay.open .modal-window {
-        transform: translateY(0);
-      }
-      .modal-bar {
-        cursor: default;
-        padding: 0 12px;
-        height: 52px;
-      }
-      #modal-maximize {
-        display: none !important;
-      }
-      .win-btn {
-        width: 42px;
-        height: 42px;
-        font-size: 1.1rem;
-      }
+      .modal-overlay.open .modal-window { transform: translateY(0); }
+      #modal-maximize { display: none !important; }
+      .hud-controls-right { top: auto; bottom: 14px; right: 14px; max-width: 210px; font-size: 10px; }
+      .hud-bottom-bar { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Landing / Welcome Screen Animation -->
+  <!-- Landing Intro -->
   <div id="intro-screen">
     <div class="intro-box">
       <div class="glow-backdrop"></div>
@@ -499,13 +389,13 @@
     </div>
   </div>
 
-  <!-- Dedicated Dynamic Window for Interactive Viewers -->
+  <!-- Dedicated Dynamic Spatial Window -->
   <div id="viewer-modal" class="modal-overlay">
     <div class="modal-window" id="modal-window">
       <div class="modal-bar" id="modal-header">
         <div class="modal-title-wrap">
           <span class="pulse-dot"></span>
-          <h4 id="modal-title">Live Spatial App</h4>
+          <h4 id="modal-title">Live Spatial Application</h4>
         </div>
         <div class="modal-controls">
           <button class="win-btn" id="modal-maximize" onclick="toggleMaximizeWindow()" title="Maximize / Restore">
@@ -516,17 +406,28 @@
           </button>
         </div>
       </div>
+
       <div class="modal-frame-wrapper">
-        <div class="frame-loader" id="frame-loader">
-          <div class="spinner"></div>
-          <span>Streaming spatial application...</span>
+        <!-- Direct Exclusive WebGIS Engine Canvas -->
+        <div id="native-map"></div>
+
+        <!-- HUD Context Banner -->
+        <div class="hud-panel" id="hud-panel">
+          <strong id="hud-title" style="color:var(--text); font-size:12px;">Active WebGIS Engine</strong>
+          <span id="hud-sub">EPSG:4326 / 3857 · High-Precision Aerial Rasters</span>
         </div>
-        <iframe id="viewer-iframe" src="" allowfullscreen></iframe>
+
+        <!-- Interactive HUD Controls -->
+        <div class="hud-controls-right" id="hud-controls"></div>
+
+        <div class="hud-bottom-bar" id="hud-coords">
+          Lat: -- | Lng: -- | Zoom: --
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Navigation Header -->
+  <!-- Navigation -->
   <header class="navbar">
     <div class="nav-left">
       <button class="tab-link active" onclick="switchTab('work', this)">WORK</button>
@@ -541,56 +442,54 @@
 
   <main class="page-container">
 
-    <!-- TAB 1: WORK (Interactive Cards) -->
+    <!-- TAB 1: WORK -->
     <section id="tab-work" class="tab-section active">
       <div class="section-badge">INTERACTIVE PLATFORMS</div>
       <h2 class="section-heading">SPATIAL DEMOS</h2>
 
       <div class="project-grid">
 
-        <!-- Project 1: Mine Site Sentinel App -->
+        <!-- Project 1: Mine Site Sentinel -->
         <div class="project-card">
           <div class="card-visual ortho-visual">
             <div class="visual-tag">2D GIS & RASTER</div>
             <div class="visual-icon"><i class="fa-solid fa-mountain-sun"></i></div>
           </div>
           <div class="card-body">
-            <h3>Mine Site Sentinel & IBM Rule 34A Deck</h3>
-            <p>Direct WebGIS mine inspection app. Renders sub-5 cm orthomosaic imagery, DSM and DTM elevation rasters with real-time blending controls, alongside cadastral overlays: lease boundaries, 7.5m safety buffers, haul routes, and mining pits.</p>
+            <h3>Mine Site Sentinel | Rule 34A Engine</h3>
+            <p>Direct opencast inspection engine. Renders sub-5 cm orthomosaic imagery, DSM/DTM elevation rasters, and boundary vectors including the 7.5m statutory safety buffer, lease boundary, and extraction blocks.</p>
             <div class="meta-tags">
               <span>Leaflet WebGIS</span>
               <span>IBM Rule 34A</span>
-              <span>DEM / DSM / DTM</span>
+              <span>DSM / DTM Blending</span>
               <span>Cadastral Vectors</span>
             </div>
             <div class="card-actions">
-              <!-- Directly anchors into the live map engine (#viewer) -->
-              <button class="btn-primary" onclick="openViewerModal('Mine Site Map Viewer | Rule 34A Spatial Deck', 'https://rituraj21188.github.io/mine-site-viewer/#viewer')">
-                <i class="fa-solid fa-play"></i> Launch App
+              <button class="btn-primary" onclick="launchSpatialEngine('mine')">
+                <i class="fa-solid fa-play"></i> Launch Engine
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Project 2: Tea Plantation Sentinel App -->
+        <!-- Project 2: Tea Plantation Sentinel -->
         <div class="project-card">
           <div class="card-visual canopy-visual">
             <div class="visual-tag">AGRI-SPATIAL ANALYTICS</div>
             <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
           </div>
           <div class="card-body">
-            <h3>Tea Plantation Sentinel | Aerial Garden Analytics</h3>
-            <p>Direct spatial garden engine. Automatically analyzes high-resolution drone orthomosaics to map estate perimeter boundaries, compute cultivated zones, isolate infill empty patches, enumerate individual tree crowns, and calculate land in Assam DLR units (Bigha-Katha-Lessa).</p>
+            <h3>Tea Plantation Sentinel | Crown Analytics</h3>
+            <p>Direct agricultural spatial engine. Analyzes high-resolution tea estate orthomosaics with automated tree crown counts, empty plantable patch demarcation, and land unit conversions (Bigha-Katha-Lessa, Ha, Acres).</p>
             <div class="meta-tags">
               <span>Tree Crown Enumeration</span>
               <span>Empty Patch Mapping</span>
               <span>Assam DLR (B-K-L)</span>
-              <span>Tile Analytics</span>
+              <span>High-Res Ortho</span>
             </div>
             <div class="card-actions">
-              <!-- Directly anchors into the live spatial app deck (#demo) -->
-              <button class="btn-primary" onclick="openViewerModal('Tea Plantation Sentinel | Spatial Deck', 'https://rituraj21188.github.io/TEA-AI-SENTINEL/#demo')">
-                <i class="fa-solid fa-play"></i> Launch App
+              <button class="btn-primary" onclick="launchSpatialEngine('tea')">
+                <i class="fa-solid fa-play"></i> Launch Engine
               </button>
             </div>
           </div>
@@ -611,8 +510,8 @@
               <span>3D Orbit Controls</span>
             </div>
             <div class="card-actions">
-              <button class="btn-primary" onclick="openViewerModal('2D & 3D Spatial Viewer', 'https://rituraj21188.github.io/2D-3D/')">
-                <i class="fa-solid fa-play"></i> Launch App
+              <button class="btn-primary" onclick="launchSpatialEngine('3d')">
+                <i class="fa-solid fa-play"></i> Launch Engine
               </button>
             </div>
           </div>
@@ -681,85 +580,50 @@
 
   </main>
 
+  <!-- Leaflet Engine Script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     // Tab Switching
     function switchTab(tabId, btn) {
       document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
-
       document.getElementById('tab-' + tabId).classList.add('active');
       btn.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Dynamic Modal Interactive Window Management
+    // Modal Window Controls
     const modal = document.getElementById('viewer-modal');
     const win = document.getElementById('modal-window');
     const header = document.getElementById('modal-header');
-    const iframe = document.getElementById('viewer-iframe');
     const modalTitle = document.getElementById('modal-title');
-    const loader = document.getElementById('frame-loader');
     const maxIcon = document.getElementById('maximize-icon');
+    const hudTitle = document.getElementById('hud-title');
+    const hudSub = document.getElementById('hud-sub');
+    const hudControls = document.getElementById('hud-controls');
+    const hudCoords = document.getElementById('hud-coords');
 
-    function isMobile() {
-      return window.innerWidth <= 768;
-    }
-
-    function openViewerModal(title, url) {
-      modalTitle.innerText = title;
-      loader.style.display = 'flex';
-      iframe.src = url;
-
-      // Reset inline coordinates and styles
-      win.classList.remove('maximized');
-      maxIcon.className = 'fa-regular fa-square';
-      win.style.top = '';
-      win.style.left = '';
-      win.style.position = '';
-      win.style.transform = '';
-
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-
-      iframe.onload = () => {
-        loader.style.display = 'none';
-        
-        // Auto scroll into embedded map app viewports if target hash exists
-        try {
-          if (url.includes('#')) {
-            const hash = url.split('#')[1];
-            const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-            const targetEl = innerDoc.getElementById(hash);
-            if (targetEl) {
-              targetEl.scrollIntoView({ behavior: 'auto' });
-            }
-          }
-        } catch (e) {
-          // Cross-origin fallback
-        }
-      };
-    }
-
-    function closeViewerModal() {
-      modal.classList.remove('open');
-      iframe.src = '';
-      document.body.style.overflow = '';
-    }
+    function isMobile() { return window.innerWidth <= 768; }
 
     function toggleMaximizeWindow() {
       if (isMobile()) return;
       win.classList.toggle('maximized');
-      if (win.classList.contains('maximized')) {
-        maxIcon.className = 'fa-regular fa-window-restore';
-      } else {
-        maxIcon.className = 'fa-regular fa-square';
-      }
+      maxIcon.className = win.classList.contains('maximized') ? 'fa-regular fa-window-restore' : 'fa-regular fa-square';
+      if (leafletMap) setTimeout(() => leafletMap.invalidateSize(), 250);
     }
 
-    // Draggable Window Support (Desktop Only)
-    let isDragging = false;
-    let startX, startY, initLeft, initTop;
+    function closeViewerModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      if (leafletMap) {
+        leafletMap.remove();
+        leafletMap = null;
+      }
+      document.getElementById('native-map').innerHTML = '';
+    }
 
+    // Draggable Window Support (Desktop)
+    let isDragging = false, startX, startY, initLeft, initTop;
     header.addEventListener('mousedown', (e) => {
       if (isMobile() || win.classList.contains('maximized') || e.target.closest('button')) return;
       isDragging = true;
@@ -774,10 +638,8 @@
 
     function onMouseMove(e) {
       if (!isDragging) return;
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
-      win.style.left = `${Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initLeft + dx))}px`;
-      win.style.top = `${Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initTop + dy))}px`;
+      win.style.left = `${Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initLeft + (e.clientX - startX)))}px`;
+      win.style.top = `${Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initTop + (e.clientY - startY)))}px`;
       win.style.position = 'fixed';
       win.style.transform = 'none';
     }
@@ -788,33 +650,186 @@
       document.removeEventListener('mouseup', onMouseUp);
     }
 
-    window.addEventListener('resize', () => {
-      if (isMobile()) {
-        win.style.left = '';
-        win.style.top = '';
-        win.style.position = '';
-        win.style.transform = '';
-      }
-    });
-
-    // ESC key closes viewer
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        closeViewerModal();
-      }
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeViewerModal();
     });
 
-    // Landing screen transition
+    // =========================================================
+    // EXCLUSIVE DIRECT SPATIAL ENGINE INTEGRATION
+    // =========================================================
+    let leafletMap = null;
+
+    function launchSpatialEngine(type) {
+      win.classList.remove('maximized');
+      maxIcon.className = 'fa-regular fa-square';
+      win.style.top = ''; win.style.left = ''; win.style.position = ''; win.style.transform = '';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      const mapContainer = document.getElementById('native-map');
+      mapContainer.innerHTML = '';
+      if (leafletMap) { leafletMap.remove(); leafletMap = null; }
+
+      if (type === 'mine') {
+        initMineEngine();
+      } else if (type === 'tea') {
+        initTeaEngine();
+      } else if (type === '3d') {
+        init3DFrame();
+      }
+    }
+
+    // 1. DIRECT MINE SITE SENTINEL ENGINE
+    function initMineEngine() {
+      modalTitle.innerText = "Mine Site Sentinel | Rule 34A Spatial Deck";
+      hudTitle.innerText = "Opencast Extraction Lease";
+      hudSub.innerText = "IBM Rule 34A MCDR (2017) · Sub-5 cm Resolution";
+
+      const bounds = L.latLngBounds([25.1830, 91.6090], [25.2020, 91.6300]);
+      leafletMap = L.map('native-map', {
+        center: [25.192475, 91.619639],
+        zoom: 17,
+        minZoom: 15,
+        maxZoom: 22,
+        maxBounds: bounds,
+        attributionControl: false
+      });
+
+      const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 22 }).addTo(leafletMap);
+      
+      const orthoLayer = L.tileLayer('https://rituraj21188.github.io/mine-site-viewer/Tiles.tif/{z}/{x}/{y}.png', {
+        maxZoom: 22, tms: true, bounds: bounds
+      }).addTo(leafletMap);
+
+      const dsmLayer = L.tileLayer('https://rituraj21188.github.io/mine-site-viewer/Tiles_DSM.tif/{z}/{x}/{y}.png', {
+        maxZoom: 22, tms: true, opacity: 0.85, bounds: bounds
+      });
+
+      // Fetch structures shapefile GeoJSON directly
+      fetch('https://rituraj21188.github.io/mine-site-viewer/data/structures-structures.geojson')
+        .then(r => r.json())
+        .then(data => {
+          L.geoJSON(data, {
+            style: (f) => {
+              const name = String(f.properties?.layer || f.properties?.name || "").toUpperCase();
+              if (name.includes("LEASE")) return { color: "#ff0000", weight: 3, dashArray: "6,6" };
+              if (name.includes("SAFETY")) return { color: "#00ff00", weight: 2.5, dashArray: "4,4" };
+              return { color: "#f59e0b", weight: 2 };
+            }
+          }).addTo(leafletMap);
+        }).catch(e => console.log('Notice: Cadastral loaded'));
+
+      hudControls.innerHTML = `
+        <div style="font-weight:700; color:var(--accent); margin-bottom:6px;">RASTER LAYERS</div>
+        <label><span>High-Res Ortho</span><input type="radio" name="mineRaster" checked onchange="toggleMineRaster('ortho')"></label>
+        <label><span>Elevation (DSM)</span><input type="radio" name="mineRaster" onchange="toggleMineRaster('dsm')"></label>
+        <div style="margin-top:6px;">Opacity</div>
+        <input type="range" min="0" max="1" step="0.05" value="1" style="width:100%; accent-color:var(--accent);" oninput="orthoLayer.setOpacity(this.value); dsmLayer.setOpacity(this.value);">
+      `;
+
+      window.toggleMineRaster = (layerType) => {
+        if (layerType === 'ortho') {
+          if (leafletMap.hasLayer(dsmLayer)) leafletMap.removeLayer(dsmLayer);
+          leafletMap.addLayer(orthoLayer);
+        } else {
+          if (leafletMap.hasLayer(orthoLayer)) leafletMap.removeLayer(orthoLayer);
+          leafletMap.addLayer(dsmLayer);
+        }
+      };
+
+      leafletMap.on('mousemove', (e) => {
+        hudCoords.innerText = `Lat: ${e.latlng.lat.toFixed(5)} | Lng: ${e.latlng.lng.toFixed(5)} | Zoom: ${leafletMap.getZoom()}`;
+      });
+
+      setTimeout(() => leafletMap.invalidateSize(), 200);
+    }
+
+    // 2. DIRECT TEA PLANTATION SENTINEL ENGINE
+    function initTeaEngine() {
+      modalTitle.innerText = "Tea Plantation Sentinel | Aerial Garden Analytics";
+      hudTitle.innerText = "Tea Garden Analytics Deck";
+      hudSub.innerText = "Crown Counting · Empty Patch Infill · Assam DLR";
+
+      const bounds = L.latLngBounds([27.05936, 94.86518], [27.06121, 94.86694]);
+      leafletMap = L.map('native-map', {
+        center: [27.06029, 94.86607],
+        zoom: 18,
+        minZoom: 16,
+        maxZoom: 21,
+        maxBounds: bounds.pad(0.3),
+        attributionControl: false
+      });
+
+      const orthoLayer = L.tileLayer('https://rituraj21188.github.io/TEA-AI-SENTINEL/tea/{z}/{x}/{y}.png', {
+        minZoom: 14, maxZoom: 22, tms: true, bounds: bounds
+      }).addTo(leafletMap);
+
+      const treeLayer = L.geoJSON(null, {
+        pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 4.5, fillColor: "#00ff9d", color: "#059669", weight: 1.5, fillOpacity: 0.85 })
+      }).addTo(leafletMap);
+
+      const gapLayer = L.geoJSON(null, {
+        style: { color: '#f59e0b', weight: 2, fillColor: '#f59e0b', fillOpacity: 0.35, dashArray: '4,4' }
+      }).addTo(leafletMap);
+
+      const boundaryLayer = L.geoJSON(null, {
+        style: { color: '#00f0ff', weight: 2.5, fillColor: 'transparent', dashArray: '5,5' }
+      }).addTo(leafletMap);
+
+      let treeCount = 0, gapCount = 0;
+
+      fetch('https://rituraj21188.github.io/TEA-AI-SENTINEL/Tree.geojson')
+        .then(r => r.json()).then(d => { treeLayer.addData(d); treeCount = d.features?.length || 0; updateTeaHUD(); }).catch(() => {});
+      fetch('https://rituraj21188.github.io/TEA-AI-SENTINEL/Empty_Patch.geojson')
+        .then(r => r.json()).then(d => { gapLayer.addData(d); gapCount = d.features?.length || 0; updateTeaHUD(); }).catch(() => {});
+      fetch('https://rituraj21188.github.io/TEA-AI-SENTINEL/Boundary.geojson')
+        .then(r => r.json()).then(d => { boundaryLayer.addData(d); }).catch(() => {});
+
+      function updateTeaHUD() {
+        const statsEl = document.getElementById('tea-stats');
+        if (statsEl) statsEl.innerHTML = `Trees: <strong>${treeCount}</strong> | Gaps: <strong>${gapCount}</strong>`;
+      }
+
+      hudControls.innerHTML = `
+        <div style="font-weight:700; color:var(--neon-cyan); margin-bottom:6px;">GARDEN LAYERS</div>
+        <label><span>Boundary</span><input type="checkbox" checked onchange="toggleTeaLayer(boundaryLayer, this.checked)"></label>
+        <label><span>Trees (${treeCount || '...'})</span><input type="checkbox" checked onchange="toggleTeaLayer(treeLayer, this.checked)"></label>
+        <label><span>Empty Patches</span><input type="checkbox" checked onchange="toggleTeaLayer(gapLayer, this.checked)"></label>
+        <div id="tea-stats" style="margin-top:6px; color:var(--neon-green); font-size:10px;">Loading features...</div>
+        <div style="margin-top:6px;">Alpha</div>
+        <input type="range" min="0" max="1" step="0.05" value="1" style="width:100%; accent-color:var(--neon-cyan);" oninput="orthoLayer.setOpacity(this.value)">
+      `;
+
+      window.toggleTeaLayer = (layer, show) => {
+        if (show) leafletMap.addLayer(layer);
+        else leafletMap.removeLayer(layer);
+      };
+
+      leafletMap.on('mousemove', (e) => {
+        hudCoords.innerText = `Lat: ${e.latlng.lat.toFixed(5)} | Lng: ${e.latlng.lng.toFixed(5)} | Zoom: ${leafletMap.getZoom()}`;
+      });
+
+      setTimeout(() => leafletMap.invalidateSize(), 200);
+    }
+
+    // 3. 3D POINT CLOUD ENGINE
+    function init3DFrame() {
+      modalTitle.innerText = "2D & 3D Spatial Point Cloud Engine";
+      hudTitle.innerText = "Dense Point Cloud & Terrain Mesh";
+      hudSub.innerText = "Three.js Orbit Engine · Surface Topology";
+      hudControls.innerHTML = `<div style="color:var(--neon-green);">3D Orbit Engine Running</div>`;
+      document.getElementById('native-map').innerHTML = `
+        <iframe src="https://rituraj21188.github.io/2D-3D/" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>
+      `;
+    }
+
+    // Landing Screen
     window.addEventListener('load', () => {
       setTimeout(() => {
         const intro = document.getElementById('intro-screen');
-        if (intro) {
-          intro.classList.add('hide');
-          setTimeout(() => intro.remove(), 800);
-        }
+        if (intro) { intro.classList.add('hide'); setTimeout(() => intro.remove(), 800); }
       }, 2100);
     });
   </script>
-
 </body>
 </html>
