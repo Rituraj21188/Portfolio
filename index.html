@@ -8,13 +8,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     /* =========================================================
-       BASE & RESET OVERRIDES
+       BASE & RESET
     ========================================================= */
     :root {
       --bg: #0b0f17;
       --card-bg: #121824;
       --border: rgba(255, 255, 255, 0.1);
       --accent: #f59e0b;
+      --neon-cyan: #00f0ff;
+      --neon-green: #00ff9d;
       --text: #e6edf3;
       --text-muted: #8b949e;
     }
@@ -28,7 +30,7 @@
     }
 
     /* =========================================================
-       NAVIGATION (MOBILE & DESKTOP)
+       NAVIGATION
     ========================================================= */
     .navbar {
       display: flex;
@@ -117,7 +119,7 @@
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
     }
     .project-card {
@@ -150,7 +152,7 @@
       left: 10px;
       font-size: 0.65rem;
       font-weight: 700;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
       padding: 3px 8px;
       border-radius: 4px;
       color: var(--accent);
@@ -171,8 +173,8 @@
     .card-body p {
       color: var(--text-muted);
       font-size: 0.88rem;
-      line-height: 1.5;
-      margin-bottom: 1rem;
+      line-height: 1.55;
+      margin-bottom: 1.2rem;
     }
     .meta-tags {
       display: flex;
@@ -192,7 +194,7 @@
       background: var(--accent);
       color: #000;
       border: none;
-      padding: 0.65rem 1rem;
+      padding: 0.7rem 1rem;
       border-radius: 8px;
       font-weight: 600;
       font-size: 0.88rem;
@@ -257,12 +259,12 @@
     }
 
     /* =========================================================
-       DYNAMIC WIDGET WINDOW (DESKTOP & MOBILE RESPONSIVE)
+       DYNAMIC WIDGET WINDOW (DESKTOP & MOBILE FRIENDLY)
     ========================================================= */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(5, 8, 15, 0.82);
+      background: rgba(5, 8, 15, 0.85);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       z-index: 2000;
@@ -279,7 +281,6 @@
       pointer-events: auto;
     }
 
-    /* Default (Desktop Viewport) */
     .modal-window {
       width: 90vw;
       height: 86vh;
@@ -302,7 +303,6 @@
       transform: scale(1) translateY(0);
     }
 
-    /* Maximized Mode */
     .modal-window.maximized {
       width: 100vw !important;
       height: 100dvh !important;
@@ -340,7 +340,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 70%;
+      max-width: 75%;
     }
     .modal-title-wrap h4 {
       margin: 0;
@@ -424,7 +424,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* =========================================================
-       MOBILE & TABLET RESPONSIVE ADAPTATIONS (<= 768px)
+       RESPONSIVE ADAPTATIONS (<= 768px)
     ========================================================= */
     @media (max-width: 768px) {
       .navbar {
@@ -451,7 +451,7 @@
         grid-template-columns: 1fr;
       }
 
-      /* Mobile Modal Widget behaves like an App Panel */
+      /* Mobile Modal window becomes a full-viewport spatial app */
       .modal-window {
         width: 100% !important;
         height: 100dvh !important;
@@ -474,7 +474,7 @@
         height: 52px;
       }
       #modal-maximize {
-        display: none !important; /* Not required on mobile screens */
+        display: none !important;
       }
       .win-btn {
         width: 42px;
@@ -505,7 +505,7 @@
       <div class="modal-bar" id="modal-header">
         <div class="modal-title-wrap">
           <span class="pulse-dot"></span>
-          <h4 id="modal-title">Live Spatial Viewer</h4>
+          <h4 id="modal-title">Live Spatial App</h4>
         </div>
         <div class="modal-controls">
           <button class="win-btn" id="modal-maximize" onclick="toggleMaximizeWindow()" title="Maximize / Restore">
@@ -519,7 +519,7 @@
       <div class="modal-frame-wrapper">
         <div class="frame-loader" id="frame-loader">
           <div class="spinner"></div>
-          <span>Streaming spatial environment...</span>
+          <span>Streaming spatial application...</span>
         </div>
         <iframe id="viewer-iframe" src="" allowfullscreen></iframe>
       </div>
@@ -547,29 +547,56 @@
       <h2 class="section-heading">SPATIAL DEMOS</h2>
 
       <div class="project-grid">
-        <!-- Project 1: Mine Site Viewer -->
+
+        <!-- Project 1: Mine Site Sentinel App -->
         <div class="project-card">
           <div class="card-visual ortho-visual">
             <div class="visual-tag">2D GIS & RASTER</div>
-            <div class="visual-icon"><i class="fa-solid fa-map"></i></div>
+            <div class="visual-icon"><i class="fa-solid fa-mountain-sun"></i></div>
           </div>
           <div class="card-body">
-            <h3>Mine Site Orthomosaic & Terrain Viewer</h3>
-            <p>Comprehensive raster survey application featuring layered RGB orthomosaic maps, dynamic digital surface models (DSM), and digital terrain models (DTM) with real-time opacity controls.</p>
+            <h3>Mine Site Sentinel & IBM Rule 34A Deck</h3>
+            <p>Direct WebGIS mine inspection app. Renders sub-5 cm orthomosaic imagery, DSM and DTM elevation rasters with real-time blending controls, alongside cadastral overlays: lease boundaries, 7.5m safety buffers, haul routes, and mining pits.</p>
             <div class="meta-tags">
-              <span>Leaflet</span>
-              <span>TMS Tiles</span>
-              <span>Elevation Mapping</span>
+              <span>Leaflet WebGIS</span>
+              <span>IBM Rule 34A</span>
+              <span>DEM / DSM / DTM</span>
+              <span>Cadastral Vectors</span>
             </div>
             <div class="card-actions">
-              <button class="btn-primary" onclick="openViewerModal('Mine Site Orthomosaic Viewer', 'https://rituraj21188.github.io/mine-site-viewer/')">
-                <i class="fa-solid fa-play"></i> Launch Viewer
+              <!-- Directly anchors into the live map engine (#viewer) -->
+              <button class="btn-primary" onclick="openViewerModal('Mine Site Map Viewer | Rule 34A Spatial Deck', 'https://rituraj21188.github.io/mine-site-viewer/#viewer')">
+                <i class="fa-solid fa-play"></i> Launch App
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Project 2: 2D/3D Point Cloud Viewer -->
+        <!-- Project 2: Tea Plantation Sentinel App -->
+        <div class="project-card">
+          <div class="card-visual canopy-visual">
+            <div class="visual-tag">AGRI-SPATIAL ANALYTICS</div>
+            <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Tea Plantation Sentinel | Aerial Garden Analytics</h3>
+            <p>Direct spatial garden engine. Automatically analyzes high-resolution drone orthomosaics to map estate perimeter boundaries, compute cultivated zones, isolate infill empty patches, enumerate individual tree crowns, and calculate land in Assam DLR units (Bigha-Katha-Lessa).</p>
+            <div class="meta-tags">
+              <span>Tree Crown Enumeration</span>
+              <span>Empty Patch Mapping</span>
+              <span>Assam DLR (B-K-L)</span>
+              <span>Tile Analytics</span>
+            </div>
+            <div class="card-actions">
+              <!-- Directly anchors into the live spatial app deck (#demo) -->
+              <button class="btn-primary" onclick="openViewerModal('Tea Plantation Sentinel | Spatial Deck', 'https://rituraj21188.github.io/TEA-AI-SENTINEL/#demo')">
+                <i class="fa-solid fa-play"></i> Launch App
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: 2D/3D Point Cloud Viewer -->
         <div class="project-card">
           <div class="card-visual mesh-visual">
             <div class="visual-tag">3D POINT CLOUD & MESH</div>
@@ -585,34 +612,12 @@
             </div>
             <div class="card-actions">
               <button class="btn-primary" onclick="openViewerModal('2D & 3D Spatial Viewer', 'https://rituraj21188.github.io/2D-3D/')">
-                <i class="fa-solid fa-play"></i> Launch Viewer
+                <i class="fa-solid fa-play"></i> Launch App
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Project 3: Tree Canopy & Automated Plant Detection -->
-        <div class="project-card">
-          <div class="card-visual canopy-visual">
-            <div class="visual-tag">AI COMPUTER VISION & GIS</div>
-            <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
-          </div>
-          <div class="card-body">
-            <h3>Tree Canopy & Plant Detection AI Viewer</h3>
-            <p>High-resolution agricultural orthomosaic analytics platform. Features client-side spectral computer vision (ExG), radar sweep animations, automated crown sizing, and 1-click GeoJSON boundary export.</p>
-            <div class="meta-tags">
-              <span>Spectral Vision</span>
-              <span>ExG Index</span>
-              <span>GeoJSON Export</span>
-              <span>TMS Tiles</span>
-            </div>
-            <div class="card-actions">
-              <button class="btn-primary" onclick="openViewerModal('Tree Canopy AI Detection Viewer', 'https://rituraj21188.github.io/TEA-AI-SENTINEL/')">
-                <i class="fa-solid fa-play"></i> Launch Viewer
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -705,7 +710,7 @@
       loader.style.display = 'flex';
       iframe.src = url;
 
-      // Reset inline styles & maximization state
+      // Reset inline coordinates and styles
       win.classList.remove('maximized');
       maxIcon.className = 'fa-regular fa-square';
       win.style.top = '';
@@ -718,6 +723,20 @@
 
       iframe.onload = () => {
         loader.style.display = 'none';
+        
+        // Auto scroll into embedded map app viewports if target hash exists
+        try {
+          if (url.includes('#')) {
+            const hash = url.split('#')[1];
+            const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+            const targetEl = innerDoc.getElementById(hash);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'auto' });
+            }
+          }
+        } catch (e) {
+          // Cross-origin fallback
+        }
       };
     }
 
@@ -769,7 +788,6 @@
       document.removeEventListener('mouseup', onMouseUp);
     }
 
-    // Window Resize event listener to clean up coordinates when swapping orientation
     window.addEventListener('resize', () => {
       if (isMobile()) {
         win.style.left = '';
