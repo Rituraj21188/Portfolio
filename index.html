@@ -1,528 +1,802 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>RITURAJ GOGOI | UAV & GIS Specialist</title>
-
   <link rel="stylesheet" href="style.css" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* =========================================================
+       BASE & RESET OVERRIDES
+    ========================================================= */
+    :root {
+      --bg: #0b0f17;
+      --card-bg: #121824;
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #f59e0b;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
 
+    /* =========================================================
+       NAVIGATION (MOBILE & DESKTOP)
+    ========================================================= */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1.5rem;
+      background: rgba(11, 15, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-left {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-left::-webkit-scrollbar { display: none; }
+    .tab-link {
+      background: none;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-link.active, .tab-link:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border);
+    }
+    .tab-link.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+    .nav-logo {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* =========================================================
+       CONTAINER & GRIDS
+    ========================================================= */
+    .page-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem;
+    }
+    .tab-section {
+      display: none;
+    }
+    .tab-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-badge {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .section-heading {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      transform: translateY(-2px);
+    }
+    .card-visual {
+      height: 140px;
+      background: #171f2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 2.2rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .visual-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.6);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+    .card-body h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .card-body p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+    .meta-tags span {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: #94a3b8;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    /* About Section */
+    .lead-text { font-size: 1.1rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem; }
+    .industry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+    .ind-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ind-pill i { color: var(--accent); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.8rem; }
+    .chips span { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+
+    /* Form */
+    .contact-form { max-width: 600px; display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+    .form-row label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+    .form-row input, .form-row textarea {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-family: inherit;
+    }
+    .form-row input:focus, .form-row textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .submit-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       DYNAMIC WIDGET WINDOW (DESKTOP & MOBILE RESPONSIVE)
+    ========================================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Default (Desktop Viewport) */
+    .modal-window {
+      width: 90vw;
+      height: 86vh;
+      min-width: 380px;
+      min-height: 320px;
+      max-width: 1440px;
+      background: #111622;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(245, 158, 11, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      resize: both;
+      transform: scale(0.96) translateY(12px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.2s ease;
+      position: absolute;
+    }
+    .modal-overlay.open .modal-window {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Maximized Mode */
+    .modal-window.maximized {
+      width: 100vw !important;
+      height: 100dvh !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      border-radius: 0 !important;
+      resize: none !important;
+      border: none !important;
+    }
+
+    .modal-bar {
+      height: 48px;
+      background: #151b26;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+    .modal-bar:active {
+      cursor: grabbing;
+    }
+
+    .modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 70%;
+    }
+    .modal-title-wrap h4 {
+      margin: 0;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      min-width: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .modal-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .win-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+    }
+    .win-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+    .win-btn.close-btn:hover, .win-btn.close-btn:active {
+      background: #e11d48;
+      color: #fff;
+    }
+
+    .modal-frame-wrapper {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #090d14;
+    }
+    #viewer-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .frame-loader {
+      position: absolute;
+      inset: 0;
+      background: #090d14;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      z-index: 10;
+    }
+    .frame-loader .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* =========================================================
+       MOBILE & TABLET RESPONSIVE ADAPTATIONS (<= 768px)
+    ========================================================= */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column-reverse;
+        gap: 0.6rem;
+        align-items: stretch;
+        padding: 0.6rem 1rem;
+      }
+      .nav-center {
+        justify-content: center;
+      }
+      .nav-left {
+        justify-content: space-around;
+      }
+      .tab-link {
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem 0.2rem;
+      }
+      .page-container {
+        padding: 1.2rem 0.8rem;
+      }
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Mobile Modal Widget behaves like an App Panel */
+      .modal-window {
+        width: 100% !important;
+        height: 100dvh !important;
+        min-width: unset !important;
+        min-height: unset !important;
+        max-width: unset !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: translateY(100%);
+        border-radius: 0 !important;
+        resize: none !important;
+        border: none !important;
+      }
+      .modal-overlay.open .modal-window {
+        transform: translateY(0);
+      }
+      .modal-bar {
+        cursor: default;
+        padding: 0 12px;
+        height: 52px;
+      }
+      #modal-maximize {
+        display: none !important; /* Not required on mobile screens */
+      }
+      .win-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-
-
   <!-- Landing / Welcome Screen Animation -->
-
   <div id="intro-screen">
-
     <div class="intro-box">
-
       <div class="glow-backdrop"></div>
-
       <img src="./Logo.png" alt="Rituraj Gogoi" class="intro-logo" />
-
       <h1 class="intro-title">RITURAJ GOGOI</h1>
-
       <p class="intro-sub">UAV Survey & Spatial Intelligence</p>
-
       <div class="intro-progress-track">
-
         <div class="intro-progress-bar"></div>
-
       </div>
-
     </div>
-
   </div>
 
-
-
-  <!-- Dedicated Modal Screen for Interactive Viewers -->
-
+  <!-- Dedicated Dynamic Window for Interactive Viewers -->
   <div id="viewer-modal" class="modal-overlay">
-
-    <div class="modal-bar">
-
-      <div class="modal-title-wrap">
-
-        <span class="pulse-dot"></span>
-
-        <h4 id="modal-title">Live Viewer</h4>
-
+    <div class="modal-window" id="modal-window">
+      <div class="modal-bar" id="modal-header">
+        <div class="modal-title-wrap">
+          <span class="pulse-dot"></span>
+          <h4 id="modal-title">Live Spatial Viewer</h4>
+        </div>
+        <div class="modal-controls">
+          <button class="win-btn" id="modal-maximize" onclick="toggleMaximizeWindow()" title="Maximize / Restore">
+            <i class="fa-regular fa-square" id="maximize-icon"></i>
+          </button>
+          <button class="win-btn close-btn" onclick="closeViewerModal()" title="Close Viewer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
-
-      <div class="modal-controls">
-
-        <a id="modal-external-link" href="#" target="_blank" rel="noopener noreferrer" title="Open in new window">
-
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-
-        </a>
-
-        <button class="modal-close" onclick="closeViewerModal()" title="Close Viewer">
-
-          <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
+      <div class="modal-frame-wrapper">
+        <div class="frame-loader" id="frame-loader">
+          <div class="spinner"></div>
+          <span>Streaming spatial environment...</span>
+        </div>
+        <iframe id="viewer-iframe" src="" allowfullscreen></iframe>
       </div>
-
     </div>
-
-    <div class="modal-frame-wrapper">
-
-      <div class="frame-loader" id="frame-loader">
-
-        <div class="spinner"></div>
-
-        <span>Streaming spatial environment...</span>
-
-      </div>
-
-      <iframe id="viewer-iframe" src="" allowfullscreen></iframe>
-
-    </div>
-
   </div>
-
-
 
   <!-- Main Navigation Header -->
-
   <header class="navbar">
-
     <div class="nav-left">
-
       <button class="tab-link active" onclick="switchTab('work', this)">WORK</button>
-
       <button class="tab-link" onclick="switchTab('about', this)">ABOUT ME</button>
-
       <button class="tab-link" onclick="switchTab('contact', this)">CONTACT</button>
-
     </div>
-
     <div class="nav-center">
-
       <img src="./Logo.png" alt="Logo" class="nav-logo" />
-
       <span>RITURAJ GOGOI</span>
-
     </div>
-
   </header>
-
-
 
   <main class="page-container">
 
-
-
     <!-- TAB 1: WORK (Interactive Cards) -->
-
     <section id="tab-work" class="tab-section active">
-
       <div class="section-badge">INTERACTIVE PLATFORMS</div>
-
       <h2 class="section-heading">SPATIAL DEMOS</h2>
 
-      
-
       <div class="project-grid">
-
         <!-- Project 1: Mine Site Viewer -->
-
         <div class="project-card">
-
           <div class="card-visual ortho-visual">
-
             <div class="visual-tag">2D GIS & RASTER</div>
-
             <div class="visual-icon"><i class="fa-solid fa-map"></i></div>
-
           </div>
-
           <div class="card-body">
-
             <h3>Mine Site Orthomosaic & Terrain Viewer</h3>
-
             <p>Comprehensive raster survey application featuring layered RGB orthomosaic maps, dynamic digital surface models (DSM), and digital terrain models (DTM) with real-time opacity controls.</p>
-
             <div class="meta-tags">
-
               <span>Leaflet</span>
-
               <span>TMS Tiles</span>
-
               <span>Elevation Mapping</span>
-
             </div>
-
             <div class="card-actions">
-
               <button class="btn-primary" onclick="openViewerModal('Mine Site Orthomosaic Viewer', 'https://rituraj21188.github.io/mine-site-viewer/')">
-
                 <i class="fa-solid fa-play"></i> Launch Viewer
-
               </button>
-
-              <a href="https://rituraj21188.github.io/mine-site-viewer/" target="_blank" class="btn-ghost">
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-
-              </a>
-
             </div>
-
           </div>
-
         </div>
-
-
 
         <!-- Project 2: 2D/3D Point Cloud Viewer -->
-
         <div class="project-card">
-
           <div class="card-visual mesh-visual">
-
             <div class="visual-tag">3D POINT CLOUD & MESH</div>
-
             <div class="visual-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
-
           </div>
-
           <div class="card-body">
-
             <h3>2D Boundary & 3D Spatial Point Cloud Viewer</h3>
-
             <p>Dual-space photogrammetry inspection tool. Real-time rendering of dense photogrammetric point clouds, camera angle controls, and terrain contour lines.</p>
-
             <div class="meta-tags">
-
               <span>Three.js</span>
-
               <span>PLY Loader</span>
-
               <span>3D Orbit Controls</span>
-
             </div>
-
             <div class="card-actions">
-
               <button class="btn-primary" onclick="openViewerModal('2D & 3D Spatial Viewer', 'https://rituraj21188.github.io/2D-3D/')">
-
                 <i class="fa-solid fa-play"></i> Launch Viewer
-
               </button>
-
-              <a href="https://rituraj21188.github.io/2D-3D/" target="_blank" class="btn-ghost">
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-
-              </a>
-
             </div>
-
           </div>
-
         </div>
-
-
 
         <!-- Project 3: Tree Canopy & Automated Plant Detection -->
-
         <div class="project-card">
-
           <div class="card-visual canopy-visual">
-
             <div class="visual-tag">AI COMPUTER VISION & GIS</div>
-
             <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
-
           </div>
-
           <div class="card-body">
-
             <h3>Tree Canopy & Plant Detection AI Viewer</h3>
-
             <p>High-resolution agricultural orthomosaic analytics platform. Features client-side spectral computer vision (ExG), radar sweep animations, automated crown sizing, and 1-click GeoJSON boundary export.</p>
-
             <div class="meta-tags">
-
               <span>Spectral Vision</span>
-
               <span>ExG Index</span>
-
               <span>GeoJSON Export</span>
-
               <span>TMS Tiles</span>
-
             </div>
-
             <div class="card-actions">
-
               <button class="btn-primary" onclick="openViewerModal('Tree Canopy AI Detection Viewer', 'https://rituraj21188.github.io/TEA-AI-SENTINEL/')">
-
                 <i class="fa-solid fa-play"></i> Launch Viewer
-
               </button>
-
-              <a href="https://rituraj21188.github.io/Tree-Canopy-Automated-Plant-Detection-Viewer/" target="_blank" class="btn-ghost">
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i> New Tab
-
-              </a>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
-
-
 
     <!-- TAB 2: ABOUT ME -->
-
     <section id="tab-about" class="tab-section">
-
       <div class="section-badge">PROFILE & INDUSTRY BACKGROUND</div>
-
       <h2 class="section-heading">ABOUT ME</h2>
 
-      
-
       <div class="about-container">
-
         <div class="about-statement">
-
           <p class="lead-text">
-
             Having past experience of more than ten years in professional-grade UAV survey works, end-to-end project closure for industries in <strong>mining</strong>, <strong>archaeological</strong>, <strong>oil & natural gas</strong>, <strong>power and infrastructure</strong>, <strong>NHAI</strong>, and <strong>Ministry of Defence</strong> sectors.
-
           </p>
-
         </div>
-
-
 
         <div class="industry-grid">
-
           <div class="ind-pill"><i class="fa-solid fa-mountain"></i> Mining Operations</div>
-
           <div class="ind-pill"><i class="fa-solid fa-landmark"></i> Archaeological Sites</div>
-
           <div class="ind-pill"><i class="fa-solid fa-fire-flame-simple"></i> Oil & Natural Gas</div>
-
           <div class="ind-pill"><i class="fa-solid fa-bolt"></i> Power & Infrastructure</div>
-
           <div class="ind-pill"><i class="fa-solid fa-road"></i> NHAI Road Corridors</div>
-
           <div class="ind-pill"><i class="fa-solid fa-shield-halved"></i> Ministry of Defence</div>
-
         </div>
-
-
 
         <div class="capabilities-box">
-
           <h3>Core Technical Deliverables</h3>
-
           <div class="chips">
-
             <span>UAV Mission Planning</span>
-
             <span>GCP & RTK/PPK Positioning</span>
-
             <span>High-Res Orthomosaics</span>
-
             <span>DSM / DTM / Contours</span>
-
             <span>3D Digital Twins</span>
-
             <span>Volumetric Stockpile Audits</span>
-
             <span>LiDAR Classification</span>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
-
-
 
     <!-- TAB 3: CONTACT -->
-
     <section id="tab-contact" class="tab-section">
-
       <div class="section-badge">INQUIRIES</div>
-
       <h2 class="section-heading">CONTACT</h2>
 
-      
-
       <form class="contact-form" action="https://formspree.io/f/mbgjaooo" method="POST">
-
         <div class="form-row">
-
           <label>NAME *</label>
-
           <input type="text" name="name" placeholder="YOUR NAME..." required />
-
         </div>
-
         <div class="form-row">
-
           <label>EMAIL ADDRESS *</label>
-
           <input type="email" name="_replyto" placeholder="YOUR EMAIL ADDRESS..." required />
-
         </div>
-
         <div class="form-row">
-
           <label>MESSAGE *</label>
-
           <textarea name="message" rows="6" placeholder="YOUR MESSAGE..." required></textarea>
-
         </div>
-
         <button type="submit" class="submit-btn">SUBMIT</button>
-
       </form>
-
     </section>
-
-
 
   </main>
 
-
-
   <script>
-
     // Tab Switching
-
     function switchTab(tabId, btn) {
-
       document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
-
       document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
 
-      
-
       document.getElementById('tab-' + tabId).classList.add('active');
-
       btn.classList.add('active');
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
     }
 
-
-
-    // Modal Interactive Viewer Management
-
+    // Dynamic Modal Interactive Window Management
     const modal = document.getElementById('viewer-modal');
-
+    const win = document.getElementById('modal-window');
+    const header = document.getElementById('modal-header');
     const iframe = document.getElementById('viewer-iframe');
-
     const modalTitle = document.getElementById('modal-title');
-
-    const modalExtLink = document.getElementById('modal-external-link');
-
     const loader = document.getElementById('frame-loader');
+    const maxIcon = document.getElementById('maximize-icon');
 
-
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
 
     function openViewerModal(title, url) {
-
       modalTitle.innerText = title;
-
-      modalExtLink.href = url;
-
       loader.style.display = 'flex';
-
       iframe.src = url;
 
-      modal.classList.add('open');
+      // Reset inline styles & maximization state
+      win.classList.remove('maximized');
+      maxIcon.className = 'fa-regular fa-square';
+      win.style.top = '';
+      win.style.left = '';
+      win.style.position = '';
+      win.style.transform = '';
 
+      modal.classList.add('open');
       document.body.style.overflow = 'hidden';
 
-
-
       iframe.onload = () => {
-
         loader.style.display = 'none';
-
       };
-
     }
-
-
 
     function closeViewerModal() {
-
       modal.classList.remove('open');
-
       iframe.src = '';
-
       document.body.style.overflow = '';
-
     }
 
+    function toggleMaximizeWindow() {
+      if (isMobile()) return;
+      win.classList.toggle('maximized');
+      if (win.classList.contains('maximized')) {
+        maxIcon.className = 'fa-regular fa-window-restore';
+      } else {
+        maxIcon.className = 'fa-regular fa-square';
+      }
+    }
 
+    // Draggable Window Support (Desktop Only)
+    let isDragging = false;
+    let startX, startY, initLeft, initTop;
+
+    header.addEventListener('mousedown', (e) => {
+      if (isMobile() || win.classList.contains('maximized') || e.target.closest('button')) return;
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      const rect = win.getBoundingClientRect();
+      initLeft = rect.left;
+      initTop = rect.top;
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseMove(e) {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      win.style.left = `${Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initLeft + dx))}px`;
+      win.style.top = `${Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initTop + dy))}px`;
+      win.style.position = 'fixed';
+      win.style.transform = 'none';
+    }
+
+    function onMouseUp() {
+      isDragging = false;
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    // Window Resize event listener to clean up coordinates when swapping orientation
+    window.addEventListener('resize', () => {
+      if (isMobile()) {
+        win.style.left = '';
+        win.style.top = '';
+        win.style.position = '';
+        win.style.transform = '';
+      }
+    });
 
     // ESC key closes viewer
-
     window.addEventListener('keydown', (e) => {
-
       if (e.key === 'Escape' && modal.classList.contains('open')) {
-
         closeViewerModal();
-
       }
-
     });
-
-
 
     // Landing screen transition
-
     window.addEventListener('load', () => {
-
       setTimeout(() => {
-
         const intro = document.getElementById('intro-screen');
-
-        intro.classList.add('hide');
-
-        setTimeout(() => intro.remove(), 800);
-
+        if (intro) {
+          intro.classList.add('hide');
+          setTimeout(() => intro.remove(), 800);
+        }
       }, 2100);
-
     });
-
   </script>
 
-
-
 </body>
-
 </html>
- 
