@@ -288,48 +288,123 @@
     function isMobile() { return window.innerWidth <= 768; }
 
     function toggleMaximizeWindow() {
-      if (isMobile()) return;
-      win.classList.toggle('maximized');
-      maxIcon.className = win.classList.contains('maximized') ? 'fa-regular fa-window-restore' : 'fa-regular fa-square';
+     if (isMobile()) return;
+  win.classList.toggle('maximized');
+  maxIcon.className = win.classList.contains('maximized') 
+    ? 'fa-regular fa-window-restore' 
+    : 'fa-regular fa-square';
+
+  // Force child WebGL / Three.js canvas to recalculate its viewport
+  setTimeout(() => {
+    try {
+      if (iframe.contentWindow) {
+        iframe.contentWindow.dispatchEvent(new Event('resize'));
+      }
+    } catch (e) {}
+  }, 300);
+}
+
+function launchApp(type) {
+  win.classList.remove('maximized');
+  maxIcon.className = 'fa-regular fa-square';
+  win.style.top = ''; 
+  win.style.left = ''; 
+  win.style.position = ''; 
+  win.style.transform = '';
+  
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  loader.style.display = 'flex';
+
+  let appUrl = '';
+  let title = '';
+  let styleOverrides = '';
+
+  switch (type) {
+    case 'mine':
+      title = "Mine Site Sentinel | Rule 34A Spatial Deck";
+      appUrl = "https://rituraj21188.github.io/mine-site-viewer/";
+      styleOverrides = `
+        header, .hero, #advantages, #workflow, #compliance, #contact, footer, .section-title, .section-desc { display: none !important; }
+        body, html { margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #0d1117 !important; }
+        #viewer { padding: 0 !important; margin: 0 !important; max-width: 100vw !important; height: 100vh !important; }
+        .viewer-frame { height: 100vh !important; width: 100vw !important; border: none !important; border-radius: 0 !important; }
+        #fullscreenToggle { display: none !important; }
+      `;
+      break;
+
+    case 'tea':
+      title = "Tea Plantation Sentinel | Aerial Garden Analytics";
+      appUrl = "https://rituraj21188.github.io/TEA-AI-SENTINEL/";
+      styleOverrides = `
+        .lp-nav, #top, #problem, #how, #features, #value, #contact, footer, .lp-demo-section .wrap { display: none !important; }
+        body, html { margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #030712 !important; }
+        #demo { padding: 0 !important; border: none !important; height: 100vh !important; width: 100vw !important; }
+        .deck-frame { height: 100vh !important; width: 100vw !important; max-width: 100vw !important; margin: 0 !important; border: none !important; border-radius: 0 !important; }
+        #btnFullscreen { display: none !important; }
+      `;
+      break;
+
+    case '3d':
+      title = "2D & 3D Spatial Point Cloud Viewer";
+      appUrl = "https://rituraj21188.github.io/2D-3D/";
+      break;
+
+    case 'church':
+      title = "Heritage Church Structure | 3D Point Cloud";
+      appUrl = "https://rituraj21188.github.io/Church/";
+      break;
+
+    case 'model':
+      title = "Textured 3D Mesh & Reality Capture Viewer";
+      appUrl = "https://rituraj21188.github.io/3D-Model-Viewer/";
+      // Ensures the 3D canvas fills the frame completely
+      styleOverrides = `
+        html, body { width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
+        canvas { width: 100% !important; height: 100% !important; display: block !important; }
+      `;
+      break;
+
+    case 'dem':
+      title = "DEM0 Terrain Elevation & Surface Point Cloud";
+      appUrl = "https://rituraj21188.github.io/DEM0/";
+      break;
+  }
+
+  modalTitle.innerText = title;
+  iframe.src = appUrl;
+
+  iframe.onload = () => {
+    loader.style.display = 'none';
+
+    try {
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      if (doc && styleOverrides) {
+        const style = doc.createElement('style');
+        style.textContent = styleOverrides;
+        doc.head.appendChild(style);
+      }
+
+      // Trigger WebGL Canvas recalculation after iframe DOM attaches
+      setTimeout(() => {
+        try {
+          if (iframe.contentWindow) {
+            iframe.contentWindow.dispatchEvent(new Event('resize'));
+            if (iframe.contentWindow.map && typeof iframe.contentWindow.map.invalidateSize === 'function') {
+              iframe.contentWindow.map.invalidateSize();
+            }
+          }
+        } catch (e) {}
+      }, 150);
+
+    } catch (e) {
+      try {
+        if (type === 'mine') iframe.contentWindow.location.hash = '#viewer';
+        if (type === 'tea') iframe.contentWindow.location.hash = '#demo';
+      } catch (err) {}
     }
-
-    function closeViewerModal() {
-      modal.classList.remove('open');
-      iframe.src = 'about:blank'; // Releases GPU WebGL contexts immediately
-      document.body.style.overflow = '';
-    }
-
-    // Draggable Window Support (Desktop)
-    let isDragging = false, startX, startY, initLeft, initTop;
-    header.addEventListener('mousedown', (e) => {
-      if (isMobile() || win.classList.contains('maximized') || e.target.closest('button')) return;
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      const rect = win.getBoundingClientRect();
-      initLeft = rect.left;
-      initTop = rect.top;
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    });
-
-    function onMouseMove(e) {
-      if (!isDragging) return;
-      win.style.left = `${Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initLeft + (e.clientX - startX)))}px`;
-      win.style.top = `${Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initTop + (e.clientY - startY)))}px`;
-      win.style.position = 'fixed';
-      win.style.transform = 'none';
-    }
-
-    function onMouseUp() {
-      isDragging = false;
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) closeViewerModal();
-    });
+  };
+}
 
     // =========================================================================
     // EXCLUSIVE APP LAUNCHER
