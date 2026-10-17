@@ -6,17 +6,6 @@
   <title>RITURAJ GOGOI | UAV & GIS Specialist</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    /* Inline utility overrides */
-    :root {
-      --bg: #0b0f17;
-      --card-bg: #121824;
-      --border: rgba(255, 255, 255, 0.1);
-      --accent: #f59e0b;
-      --text: #e6edf3;
-      --text-muted: #8b949e;
-    }
-  </style>
 </head>
 <body>
 
@@ -42,10 +31,10 @@
           <h4 id="modal-title">Live Spatial Application</h4>
         </div>
         <div class="modal-controls">
-          <button class="win-btn" id="modal-maximize" onclick="toggleMaximizeWindow()" title="Maximize / Restore">
+          <button class="win-btn" id="modal-maximize" onclick="toggleMaximizeWindow(event)" title="Maximize / Restore">
             <i class="fa-regular fa-square" id="maximize-icon"></i>
           </button>
-          <button class="win-btn close-btn" onclick="closeViewerModal()" title="Close Viewer">
+          <button class="win-btn close-btn" id="modal-close" onclick="closeViewerModal(event)" title="Close Viewer">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -206,39 +195,71 @@
       </div>
     </section>
 
-    <!-- TAB 2: ABOUT ME -->
+    <!-- TAB 2: ABOUT ME (ENHANCED EXTENSIVE UAV & GIS PROFILE) -->
     <section id="tab-about" class="tab-section">
-      <div class="section-badge">PROFILE & INDUSTRY BACKGROUND</div>
+      <div class="section-badge">PROFESSIONAL PROFILE & TECHNICAL EXPERTISE</div>
       <h2 class="section-heading">ABOUT ME</h2>
 
       <div class="about-container">
+        
+        <!-- Summary Card -->
         <div class="about-statement">
           <p class="lead-text">
-            Having past experience of more than ten years in professional-grade UAV survey works, end-to-end project closure for industries in <strong>mining</strong>, <strong>archaeological</strong>, <strong>oil & natural gas</strong>, <strong>power and infrastructure</strong>, <strong>NHAI</strong>, and <strong>Ministry of Defence</strong> sectors.
+            I am a <strong>GIS &amp; UAV Survey Specialist</strong> based in Assam with over 5+ years of hands-on experience spanning end-to-end aerial mapping, LiDAR data capture, DGPS surveying, photogrammetric reconstruction, and enterprise GIS analytics[cite: 3, 4]. 
+          </p>
+          <p class="lead-text" style="margin-top: 1rem;">
+            My career bridges rigorous field execution with spatial engineering — notably serving as an <strong>Individual Consultant for the Directorate of Archaeology (Govt. of Assam)</strong> to lead high-precision UAV acquisition and digital terrain modeling for the <strong>UNESCO World Heritage nomination dossier of Charaideo Maidams</strong>[cite: 3, 4]. Currently, as a Data Analyst at <strong>Earthtree Data Environment</strong> (Earthbanc subsidiary), I design and maintain spatial Digital MRV systems under <strong>Verra VCS international standards</strong> for large-scale carbon offset and ecosystem restoration initiatives across Northeast India[cite: 3].
           </p>
         </div>
 
+        <!-- Industry Sectors Covered -->
         <div class="industry-grid">
-          <div class="ind-pill"><i class="fa-solid fa-mountain"></i> Mining Operations</div>
-          <div class="ind-pill"><i class="fa-solid fa-landmark"></i> Archaeological Sites</div>
-          <div class="ind-pill"><i class="fa-solid fa-fire-flame-simple"></i> Oil & Natural Gas</div>
-          <div class="ind-pill"><i class="fa-solid fa-bolt"></i> Power & Infrastructure</div>
-          <div class="ind-pill"><i class="fa-solid fa-road"></i> NHAI Road Corridors</div>
-          <div class="ind-pill"><i class="fa-solid fa-shield-halved"></i> Ministry of Defence</div>
+          <div class="ind-pill"><i class="fa-solid fa-landmark"></i> Archaeological &amp; Heritage Sites</div>
+          <div class="ind-pill"><i class="fa-solid fa-seedling"></i> Carbon MRV &amp; Ecosystem Restoration</div>
+          <div class="ind-pill"><i class="fa-solid fa-mountain"></i> Opencast Mining Surveillance</div>
+          <div class="ind-pill"><i class="fa-solid fa-road"></i> Infrastructure &amp; Highway Corridors</div>
+          <div class="ind-pill"><i class="fa-solid fa-satellite"></i> DGPS &amp; Geodetic Ground Control</div>
+          <div class="ind-pill"><i class="fa-solid fa-shield-halved"></i> Cadastral Lease Boundary Audits</div>
         </div>
 
-        <div class="capabilities-box">
-          <h3>Core Technical Deliverables</h3>
+        <!-- Detailed Technical Core Competencies -->
+        <div class="capabilities-box" style="margin-bottom: 2rem;">
+          <h3>Specialized Geospatial Competencies</h3>
           <div class="chips">
-            <span>UAV Mission Planning</span>
-            <span>GCP & RTK/PPK Positioning</span>
-            <span>High-Res Orthomosaics</span>
-            <span>DSM / DTM / Contours</span>
-            <span>3D Digital Twins</span>
-            <span>Volumetric Stockpile Audits</span>
+            <span>ArcGIS Pro &amp; ArcMap</span>
+            <span>QGIS Enterprise Workflows</span>
+            <span>Global Mapper</span>
+            <span>Agisoft Metashape</span>
+            <span>Pix4Dmapper</span>
             <span>LiDAR Classification</span>
+            <span>DGPS &amp; RTK/PPK Baselines</span>
+            <span>GCP Calibration &amp; QA/QC</span>
+            <span>Sub-5cm Orthomosaics</span>
+            <span>DEM / DTM / Contours</span>
+            <span>Volumetric Cut &amp; Fill</span>
+            <span>Cadastral Lease Rectification</span>
+            <span>LULC Temporal Analysis</span>
+            <span>GIS-MIS Pipeline Integration</span>
+            <span>Verra VCS Carbon MRV</span>
           </div>
         </div>
+
+        <!-- Pilot Certification Badges -->
+        <div class="capabilities-box">
+          <h3>Statutory Aviation Credentials &amp; Education</h3>
+          <div class="chips">
+            <span style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+              <i class="fa-solid fa-certificate"></i> DGCA Remote Pilot License — Small Category (Govt. of India)
+            </span>
+            <span style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+              <i class="fa-solid fa-drone"></i> ideaForge Q6 Certified Remote Pilot
+            </span>
+            <span style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+              <i class="fa-solid fa-graduation-cap"></i> Bachelor of Computer Applications (BCA) — Jamia Hamdard University
+            </span>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -267,16 +288,23 @@
   </main>
 
   <script>
-    // Tab Switching
+    // =========================================================
+    // 1. TAB SWITCHING
+    // =========================================================
     function switchTab(tabId, btn) {
       document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
-      document.getElementById('tab-' + tabId).classList.add('active');
-      btn.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const target = document.getElementById('tab-' + tabId);
+      if (target) {
+        target.classList.add('active');
+        btn.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
 
-    // Modal Window Controls
+    // =========================================================
+    // 2. MODAL WINDOW & WEBGL ENGINE LIFECYCLE
+    // =========================================================
     const modal = document.getElementById('viewer-modal');
     const win = document.getElementById('modal-window');
     const header = document.getElementById('modal-header');
@@ -285,134 +313,103 @@
     const iframe = document.getElementById('app-iframe');
     const loader = document.getElementById('frame-loader');
 
-    function isMobile() { return window.innerWidth <= 768; }
+    function isMobile() { 
+      return window.innerWidth <= 768; 
+    }
 
-    function toggleMaximizeWindow() {
-     if (isMobile()) return;
-  win.classList.toggle('maximized');
-  maxIcon.className = win.classList.contains('maximized') 
-    ? 'fa-regular fa-window-restore' 
-    : 'fa-regular fa-square';
-
-  // Force child WebGL / Three.js canvas to recalculate its viewport
-  setTimeout(() => {
-    try {
-      if (iframe.contentWindow) {
-        iframe.contentWindow.dispatchEvent(new Event('resize'));
+    function toggleMaximizeWindow(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
       }
-    } catch (e) {}
-  }, 300);
-}
+      if (isMobile()) return;
+      
+      win.classList.toggle('maximized');
+      maxIcon.className = win.classList.contains('maximized') 
+        ? 'fa-regular fa-window-restore' 
+        : 'fa-regular fa-square';
 
-function launchApp(type) {
-  win.classList.remove('maximized');
-  maxIcon.className = 'fa-regular fa-square';
-  win.style.top = ''; 
-  win.style.left = ''; 
-  win.style.position = ''; 
-  win.style.transform = '';
-  
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  loader.style.display = 'flex';
-
-  let appUrl = '';
-  let title = '';
-  let styleOverrides = '';
-
-  switch (type) {
-    case 'mine':
-      title = "Mine Site Sentinel | Rule 34A Spatial Deck";
-      appUrl = "https://rituraj21188.github.io/mine-site-viewer/";
-      styleOverrides = `
-        header, .hero, #advantages, #workflow, #compliance, #contact, footer, .section-title, .section-desc { display: none !important; }
-        body, html { margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #0d1117 !important; }
-        #viewer { padding: 0 !important; margin: 0 !important; max-width: 100vw !important; height: 100vh !important; }
-        .viewer-frame { height: 100vh !important; width: 100vw !important; border: none !important; border-radius: 0 !important; }
-        #fullscreenToggle { display: none !important; }
-      `;
-      break;
-
-    case 'tea':
-      title = "Tea Plantation Sentinel | Aerial Garden Analytics";
-      appUrl = "https://rituraj21188.github.io/TEA-AI-SENTINEL/";
-      styleOverrides = `
-        .lp-nav, #top, #problem, #how, #features, #value, #contact, footer, .lp-demo-section .wrap { display: none !important; }
-        body, html { margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #030712 !important; }
-        #demo { padding: 0 !important; border: none !important; height: 100vh !important; width: 100vw !important; }
-        .deck-frame { height: 100vh !important; width: 100vw !important; max-width: 100vw !important; margin: 0 !important; border: none !important; border-radius: 0 !important; }
-        #btnFullscreen { display: none !important; }
-      `;
-      break;
-
-    case '3d':
-      title = "2D & 3D Spatial Point Cloud Viewer";
-      appUrl = "https://rituraj21188.github.io/2D-3D/";
-      break;
-
-    case 'church':
-      title = "Heritage Church Structure | 3D Point Cloud";
-      appUrl = "https://rituraj21188.github.io/Church/";
-      break;
-
-    case 'model':
-      title = "Textured 3D Mesh & Reality Capture Viewer";
-      appUrl = "https://rituraj21188.github.io/3D-Model-Viewer/";
-      // Ensures the 3D canvas fills the frame completely
-      styleOverrides = `
-        html, body { width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
-        canvas { width: 100% !important; height: 100% !important; display: block !important; }
-      `;
-      break;
-
-    case 'dem':
-      title = "DEM0 Terrain Elevation & Surface Point Cloud";
-      appUrl = "https://rituraj21188.github.io/DEM0/";
-      break;
-  }
-
-  modalTitle.innerText = title;
-  iframe.src = appUrl;
-
-  iframe.onload = () => {
-    loader.style.display = 'none';
-
-    try {
-      const doc = iframe.contentDocument || iframe.contentWindow.document;
-      if (doc && styleOverrides) {
-        const style = doc.createElement('style');
-        style.textContent = styleOverrides;
-        doc.head.appendChild(style);
-      }
-
-      // Trigger WebGL Canvas recalculation after iframe DOM attaches
       setTimeout(() => {
         try {
           if (iframe.contentWindow) {
             iframe.contentWindow.dispatchEvent(new Event('resize'));
-            if (iframe.contentWindow.map && typeof iframe.contentWindow.map.invalidateSize === 'function') {
-              iframe.contentWindow.map.invalidateSize();
-            }
           }
-        } catch (e) {}
-      }, 150);
-
-    } catch (e) {
-      try {
-        if (type === 'mine') iframe.contentWindow.location.hash = '#viewer';
-        if (type === 'tea') iframe.contentWindow.location.hash = '#demo';
-      } catch (err) {}
+        } catch (err) {}
+      }, 250);
     }
-  };
-}
 
-    // =========================================================================
-    // EXCLUSIVE APP LAUNCHER
-    // =========================================================================
+    // CRITICAL FIX: Explicit close function that releases WebGL and restores scrolling
+    function closeViewerModal(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      modal.classList.remove('open');
+      iframe.src = 'about:blank'; // Purges WebGL context and releases GPU RAM immediately
+      document.body.style.overflow = '';
+    }
+
+    // Fallback: Click outside modal window to close
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeViewerModal(e);
+      }
+    });
+
+    // Fallback: ESC key to close
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeViewerModal(e);
+      }
+    });
+
+    // =========================================================
+    // 3. SAFE DRAG MECHANICS (DOES NOT INTERCEPT CLICKS)
+    // =========================================================
+    let isDragging = false, startX, startY, initLeft, initTop;
+
+    header.addEventListener('mousedown', (e) => {
+      // If user clicked any button or control element, do NOT initiate drag
+      if (isMobile() || win.classList.contains('maximized') || e.target.closest('.modal-controls') || e.target.closest('button')) {
+        return;
+      }
+      
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      const rect = win.getBoundingClientRect();
+      initLeft = rect.left;
+      initTop = rect.top;
+      
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseMove(e) {
+      if (!isDragging) return;
+      win.style.left = `${Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initLeft + (e.clientX - startX)))}px`;
+      win.style.top = `${Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initTop + (e.clientY - startY)))}px`;
+      win.style.position = 'fixed';
+      win.style.transform = 'none';
+    }
+
+    function onMouseUp() {
+      isDragging = false;
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    // =========================================================
+    // 4. APPLICATION LAUNCHER (SINGLE UNIFIED CONTROLLER)
+    // =========================================================
     function launchApp(type) {
       win.classList.remove('maximized');
       maxIcon.className = 'fa-regular fa-square';
-      win.style.top = ''; win.style.left = ''; win.style.position = ''; win.style.transform = '';
+      win.style.top = ''; 
+      win.style.left = ''; 
+      win.style.position = ''; 
+      win.style.transform = '';
+      
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
       loader.style.display = 'flex';
@@ -421,46 +418,54 @@ function launchApp(type) {
       let title = '';
       let styleOverrides = '';
 
-      if (type === 'mine') {
-        title = "Mine Site Sentinel | Rule 34A Spatial Deck";
-        appUrl = "https://rituraj21188.github.io/mine-site-viewer/";
-        styleOverrides = `
-          header, .hero, #advantages, #workflow, #compliance, #contact, footer, .section-title, .section-desc {
-            display: none !important;
-          }
-          body, html {
-            margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #0d1117 !important;
-          }
-          #viewer { padding: 0 !important; margin: 0 !important; max-width: 100vw !important; height: 100vh !important; }
-          .viewer-frame { height: 100vh !important; width: 100vw !important; border: none !important; border-radius: 0 !important; }
-          #fullscreenToggle { display: none !important; }
-        `;
-      } else if (type === 'tea') {
-        title = "Tea Plantation Sentinel | Aerial Garden Analytics";
-        appUrl = "https://rituraj21188.github.io/TEA-AI-SENTINEL/";
-        styleOverrides = `
-          .lp-nav, #top, #problem, #how, #features, #value, #contact, footer, .lp-demo-section .wrap {
-            display: none !important;
-          }
-          body, html {
-            margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #030712 !important;
-          }
-          #demo { padding: 0 !important; border: none !important; height: 100vh !important; width: 100vw !important; }
-          .deck-frame { height: 100vh !important; width: 100vw !important; max-width: 100vw !important; margin: 0 !important; border: none !important; border-radius: 0 !important; }
-          #btnFullscreen { display: none !important; }
-        `;
-      } else if (type === '3d') {
-        title = "2D & 3D Spatial Point Cloud Viewer";
-        appUrl = "https://rituraj21188.github.io/2D-3D/";
-      } else if (type === 'church') {
-        title = "Heritage Church Structure | 3D Point Cloud";
-        appUrl = "https://rituraj21188.github.io/Church/";
-      } else if (type === 'model') {
-        title = "Textured 3D Mesh & Reality Capture Viewer";
-        appUrl = "https://rituraj21188.github.io/3D-Model-Viewer/";
-      } else if (type === 'dem') {
-        title = "DEM0 Terrain Elevation & Surface Point Cloud";
-        appUrl = "https://rituraj21188.github.io/DEM0/";
+      switch (type) {
+        case 'mine':
+          title = "Mine Site Sentinel | Rule 34A Spatial Deck";
+          appUrl = "https://rituraj21188.github.io/mine-site-viewer/";
+          styleOverrides = `
+            header, .hero, #advantages, #workflow, #compliance, #contact, footer, .section-title, .section-desc { display: none !important; }
+            body, html { margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #0d1117 !important; }
+            #viewer { padding: 0 !important; margin: 0 !important; max-width: 100vw !important; height: 100vh !important; }
+            .viewer-frame { height: 100vh !important; width: 100vw !important; border: none !important; border-radius: 0 !important; }
+            #fullscreenToggle { display: none !important; }
+          `;
+          break;
+
+        case 'tea':
+          title = "Tea Plantation Sentinel | Aerial Garden Analytics";
+          appUrl = "https://rituraj21188.github.io/TEA-AI-SENTINEL/";
+          styleOverrides = `
+            .lp-nav, #top, #problem, #how, #features, #value, #contact, footer, .lp-demo-section .wrap { display: none !important; }
+            body, html { margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #030712 !important; }
+            #demo { padding: 0 !important; border: none !important; height: 100vh !important; width: 100vw !important; }
+            .deck-frame { height: 100vh !important; width: 100vw !important; max-width: 100vw !important; margin: 0 !important; border: none !important; border-radius: 0 !important; }
+            #btnFullscreen { display: none !important; }
+          `;
+          break;
+
+        case '3d':
+          title = "2D & 3D Spatial Point Cloud Viewer";
+          appUrl = "https://rituraj21188.github.io/2D-3D/";
+          break;
+
+        case 'church':
+          title = "Heritage Church Structure | 3D Point Cloud";
+          appUrl = "https://rituraj21188.github.io/Church/";
+          break;
+
+        case 'model':
+          title = "Textured 3D Mesh & Reality Capture Viewer";
+          appUrl = "https://rituraj21188.github.io/3D-Model-Viewer/";
+          styleOverrides = `
+            html, body { width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
+            canvas { width: 100% !important; height: 100% !important; display: block !important; }
+          `;
+          break;
+
+        case 'dem':
+          title = "DEM0 Terrain Elevation & Surface Point Cloud";
+          appUrl = "https://rituraj21188.github.io/DEM0/";
+          break;
       }
 
       modalTitle.innerText = title;
@@ -475,25 +480,38 @@ function launchApp(type) {
             const style = doc.createElement('style');
             style.textContent = styleOverrides;
             doc.head.appendChild(style);
-
-            if (iframe.contentWindow.map && typeof iframe.contentWindow.map.invalidateSize === 'function') {
-              iframe.contentWindow.map.invalidateSize();
-            }
           }
+
+          setTimeout(() => {
+            try {
+              if (iframe.contentWindow) {
+                iframe.contentWindow.dispatchEvent(new Event('resize'));
+                if (iframe.contentWindow.map && typeof iframe.contentWindow.map.invalidateSize === 'function') {
+                  iframe.contentWindow.map.invalidateSize();
+                }
+              }
+            } catch (err) {}
+          }, 150);
+
         } catch (e) {
           try {
             if (type === 'mine') iframe.contentWindow.location.hash = '#viewer';
             if (type === 'tea') iframe.contentWindow.location.hash = '#demo';
-          } catch(err){}
+          } catch(err) {}
         }
       };
     }
 
-    // Landing Screen Transition
+    // =========================================================
+    // 5. INTRO SCREEN TRANSITION
+    // =========================================================
     window.addEventListener('load', () => {
       setTimeout(() => {
         const intro = document.getElementById('intro-screen');
-        if (intro) { intro.classList.add('hide'); setTimeout(() => intro.remove(), 800); }
+        if (intro) {
+          intro.classList.add('hide');
+          setTimeout(() => intro.remove(), 800);
+        }
       }, 2100);
     });
   </script>
