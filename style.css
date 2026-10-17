@@ -168,7 +168,7 @@ body {
   transition: all 0.2s ease;
 }
 
-.tab-link:hover, 
+.tab-link:hover,
 .tab-link.active {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.05);
@@ -265,7 +265,6 @@ body {
   overflow: hidden;
 }
 
-/* Subtle background grid pattern on all cards */
 .card-visual::before {
   content: '';
   position: absolute;
@@ -435,7 +434,7 @@ body {
   background: #f87171;
 }
 
-/* Card Body & Typography */
+/* Card Body & Action Buttons */
 .card-body {
   padding: 1.6rem;
   display: flex;
@@ -646,7 +645,7 @@ body {
 }
 
 /* ============================================================
-   8. DYNAMIC DUAL-MODE APPLICATION WINDOW (DESKTOP & MOBILE)
+   8. DYNAMIC DUAL-MODE APPLICATION WINDOW (FIXED CLOSE & FRAMING)
 ============================================================ */
 .modal-overlay {
   position: fixed;
@@ -701,10 +700,10 @@ body {
   border: none !important;
 }
 
-/* Fixed Header Bar */
+/* Header Bar & Drag Boundaries */
 .modal-bar {
   height: 48px;
-  min-height: 48px; /* Prevents bar from shrinking */
+  min-height: 48px;
   background: #151b26;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
@@ -716,6 +715,7 @@ body {
   touch-action: none;
   z-index: 10;
   flex-shrink: 0;
+  position: relative;
 }
 
 .modal-bar:active {
@@ -733,6 +733,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 75%;
+  pointer-events: none; /* Let drag pass through header text smoothly */
 }
 
 .modal-title-wrap h4 {
@@ -754,10 +755,13 @@ body {
   box-shadow: 0 0 8px var(--accent-emerald);
 }
 
+/* Control Buttons & Event Capture Priority */
 .modal-controls {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  position: relative;
+  z-index: 50; /* Sits permanently above the draggable header bar */
 }
 
 .win-btn {
@@ -767,12 +771,20 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 6px;
-  cursor: pointer;
+  cursor: pointer !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 0.95rem;
   transition: all 0.15s ease;
+  position: relative;
+  z-index: 60;
+  pointer-events: auto !important; /* Forces click responsiveness */
+}
+
+/* Ensure child FontAwesome icons never intercept click propagation */
+.win-btn * {
+  pointer-events: none !important;
 }
 
 .win-btn:hover {
@@ -781,17 +793,17 @@ body {
 }
 
 .win-btn.close-btn:hover {
-  background: #e11d48;
-  color: #ffffff;
+  background: #e11d48 !important;
+  color: #ffffff !important;
 }
 
-/* === CRITICAL FIX: Explicit flex layout for the iframe wrapper === */
+/* Full-bleed responsive iframe layout */
 .modal-frame-wrapper {
   position: relative;
   flex: 1 1 auto;
   width: 100%;
-  height: calc(100% - 48px); /* Guarantees full remaining viewport */
-  min-height: 0;             /* Prevents flex item clipping/collapsing */
+  height: calc(100% - 48px);
+  min-height: 0;
   background: #090d14;
   overflow: hidden;
 }
@@ -832,4 +844,50 @@ body {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   9. RESPONSIVE DESIGN (TABLETS & SMARTPHONES)
+============================================================ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column-reverse;
+    gap: 0.8rem;
+    align-items: stretch;
+    padding: 0.8rem 1rem;
+  }
+  .nav-center {
+    justify-content: center;
+  }
+  .nav-left {
+    justify-content: space-around;
+  }
+  .tab-link {
+    flex: 1;
+    text-align: center;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-window {
+    width: 100% !important;
+    height: 100dvh !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: translateY(100%);
+    border-radius: 0 !important;
+    resize: none !important;
+    border: none !important;
+  }
+  .modal-overlay.open .modal-window {
+    transform: translateY(0);
+  }
+  #modal-maximize {
+    display: none !important;
+  }
+  .win-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.1rem;
+  }
 }
