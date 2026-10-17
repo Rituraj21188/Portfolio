@@ -7,9 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* =========================================================
-       BASE & RESET
-    ========================================================= */
+    /* Inline utility overrides */
     :root {
       --bg: #0b0f17;
       --card-bg: #121824;
@@ -17,332 +15,6 @@
       --accent: #f59e0b;
       --text: #e6edf3;
       --text-muted: #8b949e;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      line-height: 1.5;
-    }
-
-    /* Navigation */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.8rem 1.5rem;
-      background: rgba(11, 15, 23, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-left { display: flex; gap: 0.5rem; }
-    .tab-link {
-      background: none;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      padding: 0.5rem 0.9rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .tab-link.active, .tab-link:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--border);
-    }
-    .tab-link.active {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .nav-center {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.05em;
-    }
-    .nav-logo { height: 28px; width: auto; object-fit: contain; }
-
-    /* Page Container */
-    .page-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1.2rem;
-    }
-    .tab-section { display: none; }
-    .tab-section.active { display: block; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-    .section-badge {
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-    .section-heading { font-size: 1.8rem; margin-bottom: 1.5rem; }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .project-card:hover {
-      border-color: rgba(245, 158, 11, 0.4);
-      transform: translateY(-2px);
-    }
-    .card-visual {
-      height: 140px;
-      background: #171f2e;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      font-size: 2.2rem;
-      color: rgba(255, 255, 255, 0.4);
-    }
-    .visual-tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      background: rgba(0,0,0,0.65);
-      padding: 3px 8px;
-      border-radius: 4px;
-      color: var(--accent);
-      letter-spacing: 0.04em;
-    }
-    .card-body {
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
-    }
-    .card-body h3 { font-size: 1.15rem; margin-bottom: 0.5rem; color: #fff; }
-    .card-body p {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-      line-height: 1.55;
-      margin-bottom: 1.2rem;
-    }
-    .meta-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
-    .meta-tags span {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.72rem;
-      color: #94a3b8;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      transition: opacity 0.2s;
-    }
-
-    /* About Section */
-    .lead-text { font-size: 1.1rem; line-height: 1.7; color: #cbd5e1; margin-bottom: 1.5rem; }
-    .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 2rem; }
-    .ind-pill { background: var(--card-bg); border: 1px solid var(--border); padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; }
-    .ind-pill i { color: var(--accent); }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.8rem; }
-    .chips span { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
-
-    /* Contact Form */
-    .contact-form { max-width: 600px; display: flex; flex-direction: column; gap: 1rem; }
-    .form-row { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
-    .form-row label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
-    .form-row input, .form-row textarea { background: var(--card-bg); border: 1px solid var(--border); color: #fff; padding: 0.75rem; border-radius: 8px; font-family: inherit; }
-    .submit-btn { background: var(--accent); color: #000; border: none; padding: 0.8rem; border-radius: 8px; font-weight: 700; cursor: pointer; }
-
-    /* =========================================================
-       DYNAMIC APPLICATION WINDOW (MOBILE & DESKTOP)
-    ========================================================= */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(5, 8, 15, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: auto; }
-
-    .modal-window {
-      width: 92vw;
-      height: 88vh;
-      min-width: 380px;
-      min-height: 320px;
-      max-width: 1480px;
-      background: #111622;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(245, 158, 11, 0.08);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      resize: both;
-      transform: scale(0.96) translateY(12px);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      position: absolute;
-    }
-    .modal-overlay.open .modal-window { transform: scale(1) translateY(0); }
-
-    .modal-window.maximized {
-      width: 100vw !important;
-      height: 100dvh !important;
-      top: 0 !important;
-      left: 0 !important;
-      border-radius: 0 !important;
-      resize: none !important;
-      border: none !important;
-    }
-
-    .modal-bar {
-      height: 48px;
-      background: #151b26;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 14px;
-      cursor: grab;
-      user-select: none;
-      touch-action: none;
-      z-index: 10;
-    }
-    .modal-bar:active { cursor: grabbing; }
-
-    .modal-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #f1f5f9;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 75%;
-    }
-    .modal-title-wrap h4 { margin: 0; font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .pulse-dot { width: 8px; height: 8px; min-width: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
-
-    .modal-controls { display: flex; align-items: center; gap: 6px; }
-    .win-btn {
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-      transition: all 0.15s ease;
-    }
-    .win-btn:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
-    .win-btn.close-btn:hover { background: #e11d48; color: #fff; }
-
-    .modal-frame-wrapper {
-      position: relative;
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      background: #090d14;
-      overflow: hidden;
-    }
-
-    #app-iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      background: #0b0f17;
-    }
-
-    .frame-loader {
-      position: absolute;
-      inset: 0;
-      background: #090d14;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      z-index: 10;
-    }
-    .frame-loader .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid rgba(255, 255, 255, 0.1);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .navbar { flex-direction: column-reverse; gap: 0.6rem; align-items: stretch; padding: 0.6rem 1rem; }
-      .nav-center { justify-content: center; }
-      .nav-left { justify-content: space-around; }
-      .tab-link { flex: 1; text-align: center; }
-      .project-grid { grid-template-columns: 1fr; }
-      .modal-window {
-        width: 100% !important;
-        height: 100dvh !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: translateY(100%);
-        border-radius: 0 !important;
-        resize: none !important;
-        border: none !important;
-      }
-      .modal-overlay.open .modal-window { transform: translateY(0); }
-      #modal-maximize { display: none !important; }
-      .win-btn { width: 42px; height: 42px; font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -412,69 +84,121 @@
       <div class="project-grid">
 
         <!-- Project 1: Mine Site Sentinel -->
-        <div class="project-card">
+        <div class="project-card ortho-card">
           <div class="card-visual ortho-visual">
-            <div class="visual-tag">2D GIS & RASTER</div>
+            <div class="visual-tag ortho-tag">2D GIS & RASTER</div>
             <div class="visual-icon"><i class="fa-solid fa-mountain-sun"></i></div>
           </div>
           <div class="card-body">
             <h3>Mine Site Sentinel | Rule 34A Engine</h3>
-            <p>Direct opencast inspection deck. Retains complete original functionality: interactive DSM/DTM opacity slider, sub-5 cm RGB orthomosaics, cadastral boundary vector toggling, and DGCA/IBM Rule 34A spatial compliance tools.</p>
-            <div class="meta-tags">
-              <span>Leaflet WebGIS</span>
-              <span>IBM Rule 34A</span>
-              <span>Opacity Controls</span>
-              <span>Cadastral Vectors</span>
-            </div>
+            <p>Opencast mine inspection deck. Retains interactive DSM/DTM opacity sliders, sub-5 cm RGB orthomosaics, cadastral boundary vectors, and DGCA/IBM Rule 34A compliance tools.</p>
             <div class="card-actions">
-              <button class="btn-primary" onclick="launchApp('mine')">
+              <button class="btn-primary btn-mine" onclick="launchApp('mine')">
                 <i class="fa-solid fa-play"></i> Launch App
               </button>
+              <a href="https://rituraj21188.github.io/mine-site-viewer/" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Open in new tab">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
             </div>
           </div>
         </div>
 
         <!-- Project 2: Tea Plantation Sentinel -->
-        <div class="project-card">
+        <div class="project-card canopy-card">
           <div class="card-visual canopy-visual">
-            <div class="visual-tag">AGRI-SPATIAL ANALYTICS</div>
+            <div class="visual-tag canopy-tag">AGRI-SPATIAL ANALYTICS</div>
             <div class="visual-icon"><i class="fa-solid fa-tree"></i></div>
           </div>
           <div class="card-body">
-            <h3>Tea Plantation Sentinel | Aerial Garden Analytics</h3>
-            <p>Direct tea estate inspection deck. Retains 100% native functionality: interactive Assam DLR (Bigha-Katha-Lessa) / Ha / Acre unit selector, individual tree count readout, empty infill patch toggling, and live alpha sliders.</p>
-            <div class="meta-tags">
-              <span>Assam DLR (B-K-L)</span>
-              <span>Tree Crown Enumeration</span>
-              <span>Empty Patch Mapping</span>
-              <span>Live HUD Analytics</span>
-            </div>
+            <h3>Tea Plantation Sentinel | Garden Analytics</h3>
+            <p>Direct tea estate inspection deck. Features native Assam DLR (Bigha-Katha-Lessa) / Ha / Acre unit selector, individual tree count readout, empty infill patch toggling, and live alpha sliders.</p>
             <div class="card-actions">
-              <button class="btn-primary" onclick="launchApp('tea')">
+              <button class="btn-primary btn-tea" onclick="launchApp('tea')">
                 <i class="fa-solid fa-play"></i> Launch App
               </button>
+              <a href="https://rituraj21188.github.io/TEA-AI-SENTINEL/" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Open in new tab">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
             </div>
           </div>
         </div>
 
         <!-- Project 3: 2D/3D Point Cloud Viewer -->
-        <div class="project-card">
+        <div class="project-card mesh-card">
           <div class="card-visual mesh-visual">
-            <div class="visual-tag">3D POINT CLOUD & MESH</div>
+            <div class="visual-tag mesh-tag">3D POINT CLOUD & MESH</div>
             <div class="visual-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
           </div>
           <div class="card-body">
             <h3>2D Boundary & 3D Spatial Point Cloud Viewer</h3>
             <p>Dual-space photogrammetry inspection tool. Real-time rendering of dense photogrammetric point clouds, camera angle controls, and terrain contour lines.</p>
-            <div class="meta-tags">
-              <span>Three.js</span>
-              <span>PLY Loader</span>
-              <span>3D Orbit Controls</span>
-            </div>
             <div class="card-actions">
-              <button class="btn-primary" onclick="launchApp('3d')">
+              <button class="btn-primary btn-3d" onclick="launchApp('3d')">
                 <i class="fa-solid fa-play"></i> Launch App
               </button>
+              <a href="https://rituraj21188.github.io/2D-3D/" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Open in new tab">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Church 3D Point Cloud -->
+        <div class="project-card church-card">
+          <div class="card-visual church-visual">
+            <div class="visual-tag church-tag">HERITAGE PHOTOGRAMMETRY</div>
+            <div class="visual-icon"><i class="fa-solid fa-church"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Heritage Church Structure | 3D Point Cloud</h3>
+            <p>Centimeter-grade photogrammetric point cloud reconstruction of heritage architecture. Features real-time particle size sliders, viewport background tone switching, and orbit diagnostics.</p>
+            <div class="card-actions">
+              <button class="btn-primary btn-church" onclick="launchApp('church')">
+                <i class="fa-solid fa-play"></i> Launch App
+              </button>
+              <a href="https://rituraj21188.github.io/Church/" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Open in new tab">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5: Interactive 3D Model Viewer -->
+        <div class="project-card viewer3d-card">
+          <div class="card-visual viewer3d-visual">
+            <div class="visual-tag viewer3d-tag">DIGITAL TWIN & TEXTURED MESH</div>
+            <div class="visual-icon"><i class="fa-solid fa-cube"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>Textured 3D Mesh & Reality Capture Viewer</h3>
+            <p>Optimized interactive 3D model inspector with responsive touch controls, wireframe inspection, directional illumination, and high-resolution texture preservation.</p>
+            <div class="card-actions">
+              <button class="btn-primary btn-viewer3d" onclick="launchApp('model')">
+                <i class="fa-solid fa-play"></i> Launch App
+              </button>
+              <a href="https://rituraj21188.github.io/3D-Model-Viewer/" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Open in new tab">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6: DEM0 Terrain Surface Cloud -->
+        <div class="project-card dem-card">
+          <div class="card-visual dem-visual">
+            <div class="visual-tag dem-tag">TOPOGRAPHIC DEM & ELEVATION</div>
+            <div class="visual-icon"><i class="fa-solid fa-mountain"></i></div>
+          </div>
+          <div class="card-body">
+            <h3>DEM0 Terrain Elevation & Surface Point Cloud</h3>
+            <p>Dense digital elevation surface point cloud tool for slope, runoff, and terrain relief analysis. Includes real-time point-budget throttling and background lighting toggles.</p>
+            <div class="card-actions">
+              <button class="btn-primary btn-dem" onclick="launchApp('dem')">
+                <i class="fa-solid fa-play"></i> Launch App
+              </button>
+              <a href="https://rituraj21188.github.io/DEM0/" target="_blank" rel="noopener noreferrer" class="btn-ghost" title="Open in new tab">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -571,7 +295,7 @@
 
     function closeViewerModal() {
       modal.classList.remove('open');
-      iframe.src = 'about:blank';
+      iframe.src = 'about:blank'; // Releases GPU WebGL contexts immediately
       document.body.style.overflow = '';
     }
 
@@ -608,7 +332,7 @@
     });
 
     // =========================================================================
-    // EXCLUSIVE APP LAUNCHER (Keeps all original JS/CSS & removes marketing info)
+    // EXCLUSIVE APP LAUNCHER
     // =========================================================================
     function launchApp(type) {
       win.classList.remove('maximized');
@@ -625,69 +349,43 @@
       if (type === 'mine') {
         title = "Mine Site Sentinel | Rule 34A Spatial Deck";
         appUrl = "https://rituraj21188.github.io/mine-site-viewer/";
-        // Isolate the map viewer frame completely
         styleOverrides = `
           header, .hero, #advantages, #workflow, #compliance, #contact, footer, .section-title, .section-desc {
             display: none !important;
           }
           body, html {
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 100vh !important;
-            width: 100vw !important;
-            overflow: hidden !important;
-            background: #0d1117 !important;
+            margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #0d1117 !important;
           }
-          #viewer {
-            padding: 0 !important;
-            margin: 0 !important;
-            max-width: 100vw !important;
-            height: 100vh !important;
-          }
-          .viewer-frame {
-            height: 100vh !important;
-            width: 100vw !important;
-            border: none !important;
-            border-radius: 0 !important;
-          }
+          #viewer { padding: 0 !important; margin: 0 !important; max-width: 100vw !important; height: 100vh !important; }
+          .viewer-frame { height: 100vh !important; width: 100vw !important; border: none !important; border-radius: 0 !important; }
           #fullscreenToggle { display: none !important; }
         `;
       } else if (type === 'tea') {
         title = "Tea Plantation Sentinel | Aerial Garden Analytics";
         appUrl = "https://rituraj21188.github.io/TEA-AI-SENTINEL/";
-        // Isolate the spatial deck frame completely
         styleOverrides = `
           .lp-nav, #top, #problem, #how, #features, #value, #contact, footer, .lp-demo-section .wrap {
             display: none !important;
           }
           body, html {
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 100vh !important;
-            width: 100vw !important;
-            overflow: hidden !important;
-            background: #030712 !important;
+            margin: 0 !important; padding: 0 !important; height: 100vh !important; width: 100vw !important; overflow: hidden !important; background: #030712 !important;
           }
-          #demo {
-            padding: 0 !important;
-            border: none !important;
-            height: 100vh !important;
-            width: 100vw !important;
-          }
-          .deck-frame {
-            height: 100vh !important;
-            width: 100vw !important;
-            max-width: 100vw !important;
-            margin: 0 !important;
-            border: none !important;
-            border-radius: 0 !important;
-          }
+          #demo { padding: 0 !important; border: none !important; height: 100vh !important; width: 100vw !important; }
+          .deck-frame { height: 100vh !important; width: 100vw !important; max-width: 100vw !important; margin: 0 !important; border: none !important; border-radius: 0 !important; }
           #btnFullscreen { display: none !important; }
         `;
       } else if (type === '3d') {
         title = "2D & 3D Spatial Point Cloud Viewer";
         appUrl = "https://rituraj21188.github.io/2D-3D/";
-        styleOverrides = '';
+      } else if (type === 'church') {
+        title = "Heritage Church Structure | 3D Point Cloud";
+        appUrl = "https://rituraj21188.github.io/Church/";
+      } else if (type === 'model') {
+        title = "Textured 3D Mesh & Reality Capture Viewer";
+        appUrl = "https://rituraj21188.github.io/3D-Model-Viewer/";
+      } else if (type === 'dem') {
+        title = "DEM0 Terrain Elevation & Surface Point Cloud";
+        appUrl = "https://rituraj21188.github.io/DEM0/";
       }
 
       modalTitle.innerText = title;
@@ -696,7 +394,6 @@
       iframe.onload = () => {
         loader.style.display = 'none';
 
-        // Apply clean CSS isolation to strip marketing copy and expose the full engine
         try {
           const doc = iframe.contentDocument || iframe.contentWindow.document;
           if (doc && styleOverrides) {
@@ -704,13 +401,11 @@
             style.textContent = styleOverrides;
             doc.head.appendChild(style);
 
-            // Trigger Map Resize recalculation
             if (iframe.contentWindow.map && typeof iframe.contentWindow.map.invalidateSize === 'function') {
               iframe.contentWindow.map.invalidateSize();
             }
           }
         } catch (e) {
-          // If GitHub Pages serves cross-origin restrictions, fallback smooth scroll anchor
           try {
             if (type === 'mine') iframe.contentWindow.location.hash = '#viewer';
             if (type === 'tea') iframe.contentWindow.location.hash = '#demo';
