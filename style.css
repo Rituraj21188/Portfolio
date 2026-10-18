@@ -733,7 +733,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 75%;
-  pointer-events: none; /* Let drag pass through header text smoothly */
+  pointer-events: none;
 }
 
 .modal-title-wrap h4 {
@@ -761,7 +761,7 @@ body {
   align-items: center;
   gap: 8px;
   position: relative;
-  z-index: 50; /* Sits permanently above the draggable header bar */
+  z-index: 50;
 }
 
 .win-btn {
@@ -779,10 +779,9 @@ body {
   transition: all 0.15s ease;
   position: relative;
   z-index: 60;
-  pointer-events: auto !important; /* Forces click responsiveness */
+  pointer-events: auto !important;
 }
 
-/* Ensure child FontAwesome icons never intercept click propagation */
 .win-btn * {
   pointer-events: none !important;
 }
@@ -847,47 +846,18 @@ body {
 }
 
 /* ============================================================
-   9. RESPONSIVE DESIGN (TABLETS & SMARTPHONES)
+   9. INTERACTIVE CHATBOT POPUP WIDGET
 ============================================================ */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column-reverse;
-    gap: 0.8rem;
-    align-items: stretch;
-    padding: 0.8rem 1rem;
-  }
-  .nav-center {
-    justify-content: center;
-  }
-  .nav-left {
-    justify-content: space-around;
-  }
-  .tab-link {
-    flex: 1;
-    text-align: center;
-  }
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-  .modal-window {
-    width: 100% !important;
-    height: 100dvh !important;
-    top: 0 !important;
-    left: 0 !important;
-    transform: translateY(100%);
-    border-radius: 0 !important;
-    resize: none !important;
-    border: none !important;
-  }
-  .modal-overlay.open .modal-window {
-    transform: translateY(0);
-  }
-  #modal-maximize {
-    display: none !important;
-  }
-  .win-btn {
-    width: 42px;
-    height: 42px;
-    font-size: 1.1rem;
-  }
+.chat-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1500;
+  font-family: 'Inter', sans-serif;
 }
+
+.chat-toggle-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background
