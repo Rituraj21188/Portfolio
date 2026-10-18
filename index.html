@@ -195,24 +195,22 @@
       </div>
     </section>
 
-    <!-- TAB 2: ABOUT ME (ENHANCED EXTENSIVE UAV & GIS PROFILE) -->
+    <!-- TAB 2: ABOUT ME -->
     <section id="tab-about" class="tab-section">
       <div class="section-badge">PROFESSIONAL PROFILE & TECHNICAL EXPERTISE</div>
       <h2 class="section-heading">ABOUT ME</h2>
 
       <div class="about-container">
         
-        <!-- Summary Card -->
         <div class="about-statement">
           <p class="lead-text">
-            I am a <strong>GIS &amp; UAV Survey Specialist</strong> based in Assam with over 5+ years of hands-on experience spanning end-to-end aerial mapping, LiDAR data capture, DGPS surveying, photogrammetric reconstruction, and enterprise GIS analytics. 
+            I am a <strong>GIS &amp; UAV Survey Specialist</strong> based in Assam with over 5+ years of hands-on experience spanning end-to-end aerial mapping, LiDAR data capture, DGPS surveying, photogrammetric reconstruction, and enterprise GIS analytics[cite: 3, 4].
           </p>
           <p class="lead-text" style="margin-top: 1rem;">
-            My career bridges rigorous field execution with spatial engineering — notably serving as an <strong>Individual Consultant for the Directorate of Archaeology (Govt. of Assam)</strong> to lead high-precision UAV acquisition and digital terrain modeling for the <strong>UNESCO World Heritage nomination dossier of Charaideo Maidams</strong>. Operating extensively across forestry and agroforestry sectors, I develop GIS architectures and spatial monitoring frameworks aligned with global carbon standards. This work spans landscape-level aerial mapping, tree crown enumeration, and Digital Elevation Modeling (DEM/DTM) across ecologically sensitive terrains.
+            My career bridges rigorous field execution with spatial engineering — notably serving as an <strong>Individual Consultant for the Directorate of Archaeology (Govt. of Assam)</strong> to lead high-precision UAV acquisition and digital terrain modeling for the <strong>UNESCO World Heritage nomination dossier of Charaideo Maidams</strong>[cite: 3, 4]. Operating extensively across forestry and agroforestry sectors, I develop GIS architectures and spatial monitoring frameworks aligned with global carbon standards[cite: 3]. This work spans landscape-level aerial mapping, tree crown enumeration, and Digital Elevation Modeling (DEM/DTM) across ecologically sensitive terrains[cite: 3].
           </p>
         </div>
 
-        <!-- Industry Sectors Covered -->
         <div class="industry-grid">
           <div class="ind-pill"><i class="fa-solid fa-landmark"></i> Archaeological &amp; Heritage Sites</div>
           <div class="ind-pill"><i class="fa-solid fa-seedling"></i> Carbon MRV &amp; Ecosystem Restoration</div>
@@ -222,7 +220,6 @@
           <div class="ind-pill"><i class="fa-solid fa-shield-halved"></i> Cadastral Lease Boundary Audits</div>
         </div>
 
-        <!-- Detailed Technical Core Competencies -->
         <div class="capabilities-box" style="margin-bottom: 2rem;">
           <h3>Specialized Geospatial Competencies</h3>
           <div class="chips">
@@ -244,18 +241,17 @@
           </div>
         </div>
 
-        <!-- Pilot Certification Badges -->
         <div class="capabilities-box">
           <h3>Statutory Aviation Credentials &amp; Education</h3>
           <div class="chips">
             <span style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-              <i class="fa-solid fa-certificate"></i> DGCA Remote Pilot License — Small Category (Govt. of India)
+              <i class="fa-solid fa-certificate"></i> DGCA Remote Pilot License — Small Category (Govt. of India)[cite: 5, 6]
             </span>
             <span style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-              <i class="fa-solid fa-drone"></i> ideaForge Q6 Certified Remote Pilot
+              <i class="fa-solid fa-drone"></i> ideaForge Q6 Certified Remote Pilot[cite: 5]
             </span>
             <span style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
-              <i class="fa-solid fa-graduation-cap"></i> Bachelor of Computer Applications (BCA) — Jamia Hamdard University
+              <i class="fa-solid fa-graduation-cap"></i> Bachelor of Computer Applications (BCA) — Jamia Hamdard University[cite: 5]
             </span>
           </div>
         </div>
@@ -286,6 +282,57 @@
     </section>
 
   </main>
+
+  <!-- ============================================================
+       FLOATING INTERACTIVE SPATIAL AI ASSISTANT POPUP
+  ============================================================ -->
+  <div class="chat-widget">
+    <!-- Trigger Floating Button -->
+    <button id="chat-toggle-btn" class="chat-toggle-btn" onclick="toggleChat(event)" title="Ask Spatial Assistant">
+      <i class="fa-solid fa-robot"></i>
+      <span class="chat-badge-pulse"></span>
+    </button>
+
+    <!-- Chat Window Container -->
+    <div id="chat-box" class="chat-box">
+      <div class="chat-header">
+        <div class="chat-title-info">
+          <span class="pulse-dot"></span>
+          <div>
+            <h5>Spatial Assistant</h5>
+            <small>UAV, GIS &amp; Project Intelligence</small>
+          </div>
+        </div>
+        <button class="chat-close-btn" onclick="toggleChat(event)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Quick Topic Chips -->
+      <div class="chat-chips-container">
+        <button class="chat-chip" onclick="handleChipClick('What are your core UAV & GIS skills?')">Core Skills</button>
+        <button class="chat-chip" onclick="handleChipClick('Tell me about the UNESCO Charaideo Maidams project')">UNESCO Work</button>
+        <button class="chat-chip" onclick="handleChipClick('What certifications do you hold?')">Certifications</button>
+        <button class="chat-chip" onclick="handleChipClick('What 3D demos are available?')">3D Demos</button>
+        <button class="chat-chip" onclick="handleChipClick('How can I contact or hire you?')">Contact Info</button>
+      </div>
+
+      <!-- Message History Stream -->
+      <div id="chat-messages" class="chat-messages">
+        <div class="message bot-msg">
+          Hello! I can answer questions about UAV survey workflows, photogrammetry tools, terrain modeling, or the live 3D demos. Tap a chip above or type below.
+        </div>
+      </div>
+
+      <!-- Input Form -->
+      <form id="chat-form" class="chat-input-area" onsubmit="submitChatMessage(event)">
+        <input type="text" id="chat-input" placeholder="Ask about tools, LiDAR, UNESCO..." autocomplete="off" />
+        <button type="submit" class="chat-send-btn" title="Send message">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script>
     // =========================================================
@@ -338,7 +385,6 @@
       }, 250);
     }
 
-    // CRITICAL FIX: Explicit close function that releases WebGL and restores scrolling
     function closeViewerModal(e) {
       if (e) {
         e.stopPropagation();
@@ -349,17 +395,16 @@
       document.body.style.overflow = '';
     }
 
-    // Fallback: Click outside modal window to close
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeViewerModal(e);
       }
     });
 
-    // Fallback: ESC key to close
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        closeViewerModal(e);
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('open')) closeViewerModal(e);
+        if (chatBox.classList.contains('open')) toggleChat(e);
       }
     });
 
@@ -369,7 +414,6 @@
     let isDragging = false, startX, startY, initLeft, initTop;
 
     header.addEventListener('mousedown', (e) => {
-      // If user clicked any button or control element, do NOT initiate drag
       if (isMobile() || win.classList.contains('maximized') || e.target.closest('.modal-controls') || e.target.closest('button')) {
         return;
       }
@@ -514,6 +558,88 @@
         }
       }, 2100);
     });
+
+    // =========================================================
+    // 6. POPUP CHATBOT ENGINE
+    // =========================================================
+    const chatBox = document.getElementById('chat-box');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+
+    function toggleChat(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      chatBox.classList.toggle('open');
+      if (chatBox.classList.contains('open')) {
+        setTimeout(() => chatInput.focus(), 150);
+      }
+    }
+
+    function getBotResponse(input) {
+      const q = input.toLowerCase();
+
+      if (q.includes('unesco') || q.includes('charaideo') || q.includes('maidam') || q.includes('archaeolog')) {
+        return "As an Individual Consultant for the Directorate of Archaeology (Govt. of Assam), I conducted high-precision UAV photogrammetric surveys, digital terrain modeling (DEM), and spatial buffer mapping for the Charaideo Maidams UNESCO World Heritage nomination dossier[cite: 3, 4].";
+      }
+      
+      if (q.includes('skill') || q.includes('tool') || q.includes('software') || q.includes('qgis') || q.includes('arcgis')) {
+        return "Core GIS & UAV competencies include ArcGIS Pro, QGIS, Global Mapper, Agisoft Metashape, Pix4D, DGPS/RTK ground control calibration, LiDAR classification, and 3D WebGL (Three.js/Leaflet) spatial visualization[cite: 3].";
+      }
+
+      if (q.includes('certificate') || q.includes('license') || q.includes('dgca') || q.includes('pilot')) {
+        return "I hold an active DGCA Remote Pilot Certificate (Small Category - Rotorcraft) under the Drone Amendment Rules, along with an ideaForge Q6 Flight Certification[cite: 5, 6].";
+      }
+
+      if (q.includes('carbon') || q.includes('mrv') || q.includes('forestry') || q.includes('verra') || q.includes('agroforestry')) {
+        return "I implement spatial pipelines for Digital Monitoring, Reporting, and Verification (MRV) under international Verra VCS standards, focusing on large-scale agroforestry classification, canopy monitoring, and multi-layered GIS databases across Northeast India[cite: 3].";
+      }
+
+      if (q.includes('demo') || q.includes('3d') || q.includes('viewer') || q.includes('model') || q.includes('church') || q.includes('mine')) {
+        return "The portfolio features 6 interactive platforms: Mine Site Sentinel (Rule 34A), Tea Plantation Sentinel, 2D/3D Point Cloud, Heritage Church 3D, Textured 3D Mesh Inspector, and DEM0 Topographic Point Cloud. You can click 'Launch App' on any card to stream it live!";
+      }
+
+      if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('phone') || q.includes('reach')) {
+        return "You can reach me directly via the 'CONTACT' tab on this page or email rituraj.gogoi11@gmail.com (+91 9365410250)[cite: 3].";
+      }
+
+      if (q.includes('hi') || q.includes('hello') || q.includes('hey')) {
+        return "Hello! What aspect of my UAV survey workflows, photogrammetry tools, or 3D mapping projects would you like to explore?";
+      }
+
+      return "I specialize in UAV surveying, LiDAR/photogrammetry processing, GIS-MIS architecture, and spatial analytics[cite: 3]. Feel free to ask about software (ArcGIS/QGIS), the UNESCO Charaideo Maidams mapping, or explore the 3D demos[cite: 3]!";
+    }
+
+    function appendMessage(sender, text) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${sender}-msg`;
+      msgDiv.innerText = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function submitChatMessage(e) {
+      if (e) e.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      appendMessage('user', text);
+      chatInput.value = '';
+
+      setTimeout(() => {
+        const reply = getBotResponse(text);
+        appendMessage('bot', reply);
+      }, 300);
+    }
+
+    function handleChipClick(chipText) {
+      appendMessage('user', chipText);
+      setTimeout(() => {
+        const reply = getBotResponse(chipText);
+        appendMessage('bot', reply);
+      }, 250);
+    }
   </script>
 </body>
 </html>
