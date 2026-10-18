@@ -284,54 +284,76 @@
   </main>
 
   <!-- ============================================================
-       FLOATING INTERACTIVE SPATIAL AI ASSISTANT POPUP
+       MODERN SPATIAL INTELLIGENCE HUD CHATBOT
   ============================================================ -->
-  <div class="chat-widget">
-    <!-- Trigger Floating Button -->
-    <button id="chat-toggle-btn" class="chat-toggle-btn" onclick="toggleChat(event)" title="Ask Spatial Assistant">
-      <i class="fa-solid fa-robot"></i>
-      <span class="chat-badge-pulse"></span>
+  <div class="chat-hud-widget">
+    <!-- Circular Floating Orb Button -->
+    <button id="chat-hud-trigger" class="chat-hud-btn" onclick="toggleChat(event)" aria-label="Toggle Spatial Assistant">
+      <div class="hud-btn-inner">
+        <i class="fa-solid fa-satellite-dish hud-icon-default"></i>
+        <i class="fa-solid fa-xmark hud-icon-close"></i>
+      </div>
+      <span class="hud-ping-ring"></span>
+      <span class="hud-dot"></span>
     </button>
 
-    <!-- Chat Window Container -->
-    <div id="chat-box" class="chat-box">
-      <div class="chat-header">
-        <div class="chat-title-info">
-          <span class="pulse-dot"></span>
-          <div>
-            <h5>Spatial Assistant</h5>
-            <small>UAV, GIS &amp; Project Intelligence</small>
+    <!-- Modern Glassmorphism Chat Window -->
+    <aside id="chat-hud-window" class="chat-hud-window" aria-hidden="true">
+      <header class="hud-header">
+        <div class="hud-meta">
+          <div class="hud-avatar">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <div class="hud-title-col">
+            <div class="hud-brand">
+              <span>SPATIAL HUD</span>
+              <span class="hud-status-badge">ONLINE</span>
+            </div>
+            <p class="hud-subtitle">UAV, Photogrammetry &amp; GIS Agent</p>
           </div>
         </div>
-        <button class="chat-close-btn" onclick="toggleChat(event)">
-          <i class="fa-solid fa-xmark"></i>
+        <button class="hud-dismiss-btn" onclick="toggleChat(event)" aria-label="Close Chat">
+          <i class="fa-solid fa-minus"></i>
         </button>
-      </div>
+      </header>
 
-      <!-- Quick Topic Chips -->
-      <div class="chat-chips-container">
-        <button class="chat-chip" onclick="handleChipClick('What are your core UAV & GIS skills?')">Core Skills</button>
-        <button class="chat-chip" onclick="handleChipClick('Tell me about the UNESCO Charaideo Maidams project')">UNESCO Work</button>
-        <button class="chat-chip" onclick="handleChipClick('What certifications do you hold?')">Certifications</button>
-        <button class="chat-chip" onclick="handleChipClick('What 3D demos are available?')">3D Demos</button>
-        <button class="chat-chip" onclick="handleChipClick('How can I contact or hire you?')">Contact Info</button>
-      </div>
+      <!-- Interactive Topic Chips -->
+      <nav class="hud-chips-bar" aria-label="Quick questions">
+        <button class="hud-chip" onclick="handleChipClick('What are your core UAV & GIS skills?')">
+          <i class="fa-solid fa-compass-drafting"></i> Core Skills
+        </button>
+        <button class="hud-chip" onclick="handleChipClick('Tell me about the UNESCO Charaideo Maidams project')">
+          <i class="fa-solid fa-landmark"></i> UNESCO Dossier
+        </button>
+        <button class="hud-chip" onclick="handleChipClick('What certifications do you hold?')">
+          <i class="fa-solid fa-certificate"></i> DGCA License
+        </button>
+        <button class="hud-chip" onclick="handleChipClick('What 3D demos are available?')">
+          <i class="fa-solid fa-cubes"></i> 3D Demos
+        </button>
+        <button class="hud-chip" onclick="handleChipClick('How can I contact or hire you?')">
+          <i class="fa-solid fa-envelope"></i> Contact
+        </button>
+      </nav>
 
-      <!-- Message History Stream -->
-      <div id="chat-messages" class="chat-messages">
-        <div class="message bot-msg">
-          Hello! I can answer questions about UAV survey workflows, photogrammetry tools, terrain modeling, or the live 3D demos. Tap a chip above or type below.
+      <!-- Message Stream -->
+      <div id="chat-messages" class="hud-messages">
+        <div class="hud-bubble hud-bot-bubble">
+          <div class="hud-bubble-badge">ASSISTANT</div>
+          <p>Greetings! I can guide you through Rituraj's UAV survey workflows, LiDAR/photogrammetry pipelines, terrain models, and interactive 3D platforms. Select a prompt above or type a query.</p>
         </div>
       </div>
 
-      <!-- Input Form -->
-      <form id="chat-form" class="chat-input-area" onsubmit="submitChatMessage(event)">
-        <input type="text" id="chat-input" placeholder="Ask about tools, LiDAR, UNESCO..." autocomplete="off" />
-        <button type="submit" class="chat-send-btn" title="Send message">
-          <i class="fa-solid fa-paper-plane"></i>
-        </button>
+      <!-- Input Bar -->
+      <form id="chat-form" class="hud-input-dock" onsubmit="submitChatMessage(event)">
+        <div class="hud-input-shell">
+          <input type="text" id="chat-input" placeholder="Query spatial data, tools, projects..." autocomplete="off" />
+          <button type="submit" class="hud-send-btn" title="Send message" aria-label="Send">
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
       </form>
-    </div>
+    </aside>
   </div>
 
   <script>
@@ -403,8 +425,8 @@
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (modal.classList.contains('open')) closeViewerModal(e);
-        if (chatBox.classList.contains('open')) toggleChat(e);
+        if (modal && modal.classList.contains('open')) closeViewerModal(e);
+        if (chatWidget && chatWidget.classList.contains('open')) toggleChat(e);
       }
     });
 
@@ -560,9 +582,10 @@
     });
 
     // =========================================================
-    // 6. POPUP CHATBOT ENGINE
+    // 6. MODERN SPATIAL HUD CHAT ENGINE
     // =========================================================
-    const chatBox = document.getElementById('chat-box');
+    const chatWidget = document.querySelector('.chat-hud-widget');
+    const chatWindow = document.getElementById('chat-hud-window');
     const chatMessages = document.getElementById('chat-messages');
     const chatInput = document.getElementById('chat-input');
 
@@ -571,8 +594,10 @@
         e.stopPropagation();
         e.preventDefault();
       }
-      chatBox.classList.toggle('open');
-      if (chatBox.classList.contains('open')) {
+      chatWidget.classList.toggle('open');
+      const isOpen = chatWidget.classList.contains('open');
+      chatWindow.setAttribute('aria-hidden', !isOpen);
+      if (isOpen) {
         setTimeout(() => chatInput.focus(), 150);
       }
     }
@@ -581,41 +606,52 @@
       const q = input.toLowerCase();
 
       if (q.includes('unesco') || q.includes('charaideo') || q.includes('maidam') || q.includes('archaeolog')) {
-        return "As an Individual Consultant for the Directorate of Archaeology (Govt. of Assam), I conducted high-precision UAV photogrammetric surveys, digital terrain modeling (DEM), and spatial buffer mapping for the Charaideo Maidams UNESCO World Heritage nomination dossier[cite: 3, 4].";
+        return "Serving as an Individual Consultant for the Directorate of Archaeology (Govt. of Assam), I directed the UAV photogrammetry surveys, digital terrain modeling (DEM), and spatial buffer zone delineation for the Charaideo Maidams UNESCO World Heritage nomination dossier[cite: 3, 4].";
       }
       
       if (q.includes('skill') || q.includes('tool') || q.includes('software') || q.includes('qgis') || q.includes('arcgis')) {
-        return "Core GIS & UAV competencies include ArcGIS Pro, QGIS, Global Mapper, Agisoft Metashape, Pix4D, DGPS/RTK ground control calibration, LiDAR classification, and 3D WebGL (Three.js/Leaflet) spatial visualization[cite: 3].";
+        return "My core geospatial toolkit includes ArcGIS Pro, QGIS, Global Mapper, Agisoft Metashape, Pix4D, DGPS/RTK ground control calibration, LiDAR classification, and custom 3D WebGL (Three.js/Leaflet) spatial visualization[cite: 3].";
       }
 
       if (q.includes('certificate') || q.includes('license') || q.includes('dgca') || q.includes('pilot')) {
-        return "I hold an active DGCA Remote Pilot Certificate (Small Category - Rotorcraft) under the Drone Amendment Rules, along with an ideaForge Q6 Flight Certification[cite: 5, 6].";
+        return "I hold an official DGCA Remote Pilot License (Small Category - Rotorcraft) under the Drone Amendment Rules, along with an ideaForge Q6 Flight Certification[cite: 5, 6].";
       }
 
       if (q.includes('carbon') || q.includes('mrv') || q.includes('forestry') || q.includes('verra') || q.includes('agroforestry')) {
-        return "I implement spatial pipelines for Digital Monitoring, Reporting, and Verification (MRV) under international Verra VCS standards, focusing on large-scale agroforestry classification, canopy monitoring, and multi-layered GIS databases across Northeast India[cite: 3].";
+        return "I design and maintain spatial pipelines for Digital Monitoring, Reporting, and Verification (MRV) under Verra VCS frameworks, executing landscape-level agroforestry classification, canopy density audits, and high-resolution DEM/DTM generation across Northeast India[cite: 3].";
       }
 
       if (q.includes('demo') || q.includes('3d') || q.includes('viewer') || q.includes('model') || q.includes('church') || q.includes('mine')) {
-        return "The portfolio features 6 interactive platforms: Mine Site Sentinel (Rule 34A), Tea Plantation Sentinel, 2D/3D Point Cloud, Heritage Church 3D, Textured 3D Mesh Inspector, and DEM0 Topographic Point Cloud. You can click 'Launch App' on any card to stream it live!";
+        return "You can explore 6 live platforms above: Mine Site Sentinel (Rule 34A Engine), Tea Plantation Sentinel, 2D/3D Point Cloud, Heritage Church 3D, Textured 3D Mesh Inspector, and DEM0 Elevation Cloud. Click 'Launch App' on any card to stream it directly inside the viewer!";
       }
 
       if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('phone') || q.includes('reach')) {
-        return "You can reach me directly via the 'CONTACT' tab on this page or email rituraj.gogoi11@gmail.com (+91 9365410250)[cite: 3].";
+        return "You can get in touch via the 'CONTACT' tab on this page or email directly at rituraj.gogoi11@gmail.com (+91 9365410250)[cite: 3].";
       }
 
       if (q.includes('hi') || q.includes('hello') || q.includes('hey')) {
         return "Hello! What aspect of my UAV survey workflows, photogrammetry tools, or 3D mapping projects would you like to explore?";
       }
 
-      return "I specialize in UAV surveying, LiDAR/photogrammetry processing, GIS-MIS architecture, and spatial analytics[cite: 3]. Feel free to ask about software (ArcGIS/QGIS), the UNESCO Charaideo Maidams mapping, or explore the 3D demos[cite: 3]!";
+      return "I specialize in UAV surveying, LiDAR/photogrammetric data pipelines, GIS-MIS systems, and spatial analytics[cite: 3]. Feel free to ask about software (ArcGIS/QGIS), the UNESCO Charaideo Maidams documentation, or launch any of the interactive 3D platforms above[cite: 3]!";
     }
 
     function appendMessage(sender, text) {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = `message ${sender}-msg`;
-      msgDiv.innerText = text;
-      chatMessages.appendChild(msgDiv);
+      const bubble = document.createElement('div');
+      bubble.className = `hud-bubble hud-${sender}-bubble`;
+      
+      if (sender === 'bot') {
+        const badge = document.createElement('div');
+        badge.className = 'hud-bubble-badge';
+        badge.innerText = 'ASSISTANT';
+        bubble.appendChild(badge);
+      }
+
+      const p = document.createElement('p');
+      p.innerText = text;
+      bubble.appendChild(p);
+
+      chatMessages.appendChild(bubble);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
