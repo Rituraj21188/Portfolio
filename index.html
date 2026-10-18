@@ -204,10 +204,10 @@
         
         <div class="about-statement">
           <p class="lead-text">
-            I am a <strong>GIS &amp; UAV Survey Specialist</strong> based in Assam with over 5+ years of hands-on experience spanning end-to-end aerial mapping, LiDAR data capture, DGPS surveying, photogrammetric reconstruction, and enterprise GIS analytics[cite: 3, 4].
+            I am a <strong>GIS &amp; UAV Survey Specialist</strong> based in Assam with over 5+ years of hands-on experience spanning end-to-end aerial mapping, LiDAR data capture, DGPS surveying, photogrammetric reconstruction, and enterprise GIS analytics.
           </p>
           <p class="lead-text" style="margin-top: 1rem;">
-            My career bridges rigorous field execution with spatial engineering — notably serving as an <strong>Individual Consultant for the Directorate of Archaeology (Govt. of Assam)</strong> to lead high-precision UAV acquisition and digital terrain modeling for the <strong>UNESCO World Heritage nomination dossier of Charaideo Maidams</strong>[cite: 3, 4]. Operating extensively across forestry and agroforestry sectors, I develop GIS architectures and spatial monitoring frameworks aligned with global carbon standards[cite: 3]. This work spans landscape-level aerial mapping, tree crown enumeration, and Digital Elevation Modeling (DEM/DTM) across ecologically sensitive terrains[cite: 3].
+            My career bridges rigorous field execution with spatial engineering — notably serving as an <strong>Individual Consultant for the Directorate of Archaeology (Govt. of Assam)</strong> to lead high-precision UAV acquisition and digital terrain modeling for the <strong>UNESCO World Heritage nomination dossier of Charaideo Maidams</strong>. Operating extensively across forestry and agroforestry sectors, I develop GIS architectures and spatial monitoring frameworks aligned with global carbon standards. This work spans landscape-level aerial mapping, tree crown enumeration, and Digital Elevation Modeling (DEM/DTM) across ecologically sensitive terrains.
           </p>
         </div>
 
@@ -245,13 +245,13 @@
           <h3>Statutory Aviation Credentials &amp; Education</h3>
           <div class="chips">
             <span style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-              <i class="fa-solid fa-certificate"></i> DGCA Remote Pilot License — Small Category (Govt. of India)[cite: 5, 6]
+              <i class="fa-solid fa-certificate"></i> DGCA Remote Pilot License — Small Category (Govt. of India)
             </span>
             <span style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
-              <i class="fa-solid fa-drone"></i> ideaForge Q6 Certified Remote Pilot[cite: 5]
+              <i class="fa-solid fa-drone"></i> ideaForge Q6 Certified Remote Pilot
             </span>
             <span style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
-              <i class="fa-solid fa-graduation-cap"></i> Bachelor of Computer Applications (BCA) — Jamia Hamdard University[cite: 5]
+              <i class="fa-solid fa-graduation-cap"></i> Bachelor of Computer Applications (BCA) — Jamia Hamdard University
             </span>
           </div>
         </div>
@@ -319,19 +319,19 @@
 
       <!-- Interactive Topic Chips -->
       <nav class="hud-chips-bar" aria-label="Quick questions">
-        <button class="hud-chip" onclick="handleChipClick('What are your core UAV & GIS skills?')">
+        <button class="hud-chip" onclick="handleChipClick('What are his core UAV & GIS skills?')">
           <i class="fa-solid fa-compass-drafting"></i> Core Skills
         </button>
-        <button class="hud-chip" onclick="handleChipClick('Tell me about the UNESCO Charaideo Maidams project')">
+        <button class="hud-chip" onclick="handleChipClick('Tell me about his UNESCO Charaideo Maidams project')">
           <i class="fa-solid fa-landmark"></i> UNESCO Dossier
         </button>
-        <button class="hud-chip" onclick="handleChipClick('What certifications do you hold?')">
+        <button class="hud-chip" onclick="handleChipClick('What certifications does he hold?')">
           <i class="fa-solid fa-certificate"></i> DGCA License
         </button>
-        <button class="hud-chip" onclick="handleChipClick('What 3D demos are available?')">
+        <button class="hud-chip" onclick="handleChipClick('Can you launch the 3D church point cloud?')">
           <i class="fa-solid fa-cubes"></i> 3D Demos
         </button>
-        <button class="hud-chip" onclick="handleChipClick('How can I contact or hire you?')">
+        <button class="hud-chip" onclick="handleChipClick('How can I contact or hire Rituraj?')">
           <i class="fa-solid fa-envelope"></i> Contact
         </button>
       </nav>
@@ -339,15 +339,15 @@
       <!-- Message Stream -->
       <div id="chat-messages" class="hud-messages">
         <div class="hud-bubble hud-bot-bubble">
-          <div class="hud-bubble-badge">ASSISTANT</div>
-          <p>Greetings! I can guide you through Rituraj's UAV survey workflows, LiDAR/photogrammetry pipelines, terrain models, and interactive 3D platforms. Select a prompt above or type a query.</p>
+          <div class="hud-bubble-badge">SPATIAL AGENT</div>
+          <p>Welcome! I am Rituraj's Spatial Intelligence Assistant. I can walk you through his UAV flight missions, LiDAR pipelines, UNESCO documentation, or launch his live 3D web applications. What would you like to explore?</p>
         </div>
       </div>
 
       <!-- Input Bar -->
       <form id="chat-form" class="hud-input-dock" onsubmit="submitChatMessage(event)">
         <div class="hud-input-shell">
-          <input type="text" id="chat-input" placeholder="Query spatial data, tools, projects..." autocomplete="off" />
+          <input type="text" id="chat-input" placeholder="Ask about his workflows, LiDAR, licenses, or ask to launch a demo..." autocomplete="off" />
           <button type="submit" class="hud-send-btn" title="Send message" aria-label="Send">
             <i class="fa-solid fa-arrow-up"></i>
           </button>
@@ -582,7 +582,7 @@
     });
 
     // =========================================================
-    // 6. MODERN SPATIAL HUD CHAT ENGINE
+    // 6. MODERN SPATIAL INTELLIGENCE CONVERSATIONAL AGENT
     // =========================================================
     const chatWidget = document.querySelector('.chat-hud-widget');
     const chatWindow = document.getElementById('chat-hud-window');
@@ -602,38 +602,73 @@
       }
     }
 
+    // Interactive Third-Person Conversational Engine
     function getBotResponse(input) {
       const q = input.toLowerCase();
 
+      // Launch App Shortcuts
+      if (q.includes('launch church') || q.includes('open church') || (q.includes('church') && q.includes('view'))) {
+        launchApp('church');
+        return "Launching the Heritage Church 3D Point Cloud viewer right now in the main application frame! Would you like to know how he processed the photogrammetry for this?";
+      }
+
+      if (q.includes('launch mine') || q.includes('open mine') || (q.includes('mine') && q.includes('view'))) {
+        launchApp('mine');
+        return "Streaming the Mine Site Sentinel Rule 34A engine directly into the viewport! Rituraj built this for regulatory opencast compliance.";
+      }
+
+      if (q.includes('launch tea') || q.includes('open tea') || (q.includes('tea') && q.includes('view'))) {
+        launchApp('tea');
+        return "Opening the Tea Plantation Sentinel deck! Notice the native Assam DLR unit conversion engine and canopy tree crown counter he integrated.";
+      }
+
+      if (q.includes('launch dem') || q.includes('open dem') || (q.includes('dem') && q.includes('view'))) {
+        launchApp('dem');
+        return "Launching the DEM0 Topographic Elevation Point Cloud platform for high-precision surface modeling.";
+      }
+
+      // Contextual Knowledge Queries (Speaking as "He/Him/Rituraj")
       if (q.includes('unesco') || q.includes('charaideo') || q.includes('maidam') || q.includes('archaeolog')) {
-        return "Serving as an Individual Consultant for the Directorate of Archaeology (Govt. of Assam), I directed the UAV photogrammetry surveys, digital terrain modeling (DEM), and spatial buffer zone delineation for the Charaideo Maidams UNESCO World Heritage nomination dossier[cite: 3, 4].";
-      }
-      
-      if (q.includes('skill') || q.includes('tool') || q.includes('software') || q.includes('qgis') || q.includes('arcgis')) {
-        return "My core geospatial toolkit includes ArcGIS Pro, QGIS, Global Mapper, Agisoft Metashape, Pix4D, DGPS/RTK ground control calibration, LiDAR classification, and custom 3D WebGL (Three.js/Leaflet) spatial visualization[cite: 3].";
+        return "Rituraj served as an Individual Consultant for the Directorate of Archaeology (Government of Assam). He led the aerial acquisition, dense point cloud modeling, and spatial buffer mapping for the Charaideo Maidams nomination dossier, which successfully achieved UNESCO World Heritage status. Would you like to hear about the survey methodology or view his 3D heritage viewer?";
       }
 
-      if (q.includes('certificate') || q.includes('license') || q.includes('dgca') || q.includes('pilot')) {
-        return "I hold an official DGCA Remote Pilot License (Small Category - Rotorcraft) under the Drone Amendment Rules, along with an ideaForge Q6 Flight Certification[cite: 5, 6].";
+      if (q.includes('skill') || q.includes('software') || q.includes('tool') || q.includes('arcgis') || q.includes('qgis') || q.includes('stack')) {
+        return "Rituraj's technical geospatial stack includes ArcGIS Pro, QGIS, Global Mapper, Agisoft Metashape, Pix4D, DGPS/RTK ground control calibration, and LiDAR point cloud classification. On the development side, he builds custom WebGIS platforms using Leaflet and Three.js. Are you interested in his field survey workflows or his spatial analytical pipelines?";
       }
 
-      if (q.includes('carbon') || q.includes('mrv') || q.includes('forestry') || q.includes('verra') || q.includes('agroforestry')) {
-        return "I design and maintain spatial pipelines for Digital Monitoring, Reporting, and Verification (MRV) under Verra VCS frameworks, executing landscape-level agroforestry classification, canopy density audits, and high-resolution DEM/DTM generation across Northeast India[cite: 3].";
+      if (q.includes('license') || q.includes('certificate') || q.includes('dgca') || q.includes('pilot')) {
+        return "He holds an active Directorate General of Civil Aviation (DGCA) Remote Pilot Certificate for rotorcraft (Small Category) issued under the Drone Amendment Rules, along with an ideaForge Q6 Flight Certification. Would you like to review his survey capabilities or project history?";
       }
 
-      if (q.includes('demo') || q.includes('3d') || q.includes('viewer') || q.includes('model') || q.includes('church') || q.includes('mine')) {
-        return "You can explore 6 live platforms above: Mine Site Sentinel (Rule 34A Engine), Tea Plantation Sentinel, 2D/3D Point Cloud, Heritage Church 3D, Textured 3D Mesh Inspector, and DEM0 Elevation Cloud. Click 'Launch App' on any card to stream it directly inside the viewer!";
+      if (q.includes('forestry') || q.includes('carbon') || q.includes('mrv') || q.includes('verra') || q.includes('agroforestry')) {
+        return "He specializes in large-scale agroforestry classification, high-resolution Digital Elevation Models (DEM/DTM), and canopy density audits to support digital Monitoring, Reporting, and Verification (MRV) systems under international Verra VCS carbon standards. Would you like to discuss his experience in environmental analytics?";
       }
 
-      if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('phone') || q.includes('reach')) {
-        return "You can get in touch via the 'CONTACT' tab on this page or email directly at rituraj.gogoi11@gmail.com (+91 9365410250)[cite: 3].";
+      if (q.includes('mining') || q.includes('rule 34a') || q.includes('volumetric') || q.includes('stockpile')) {
+        return "In the mining sector, Rituraj executes volumetric cut-and-fill stockpile audits, surface topography mapping, and DGCA/IBM Rule 34A spatial compliance verifications. You can also test his live Mine Sentinel application directly by typing 'launch mine'!";
       }
 
-      if (q.includes('hi') || q.includes('hello') || q.includes('hey')) {
-        return "Hello! What aspect of my UAV survey workflows, photogrammetry tools, or 3D mapping projects would you like to explore?";
+      if (q.includes('demo') || q.includes('3d') || q.includes('viewer') || q.includes('project') || q.includes('works')) {
+        return "Rituraj has 6 live interactive spatial engines in this portfolio: Mine Site Sentinel, Tea Plantation Sentinel, 2D/3D Dual Space, Heritage Church Cloud, Textured 3D Mesh, and DEM0 Topographic Cloud. You can click 'Launch App' on any card above or simply tell me 'launch church' or 'launch mine'!";
       }
 
-      return "I specialize in UAV surveying, LiDAR/photogrammetric data pipelines, GIS-MIS systems, and spatial analytics[cite: 3]. Feel free to ask about software (ArcGIS/QGIS), the UNESCO Charaideo Maidams documentation, or launch any of the interactive 3D platforms above[cite: 3]!";
+      if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('phone') || q.includes('reach') || q.includes('location')) {
+        return "Rituraj is based in Assam, India, and is open for consultancy, enterprise GIS contracts, or technical UAV project roles. You can reach him directly via the Contact tab or at rituraj.gogoi11@gmail.com (+91 9365410250). Shall I jump you to the contact form?";
+      }
+
+      if (q.includes('education') || q.includes('degree') || q.includes('college')) {
+        return "He holds a Bachelor of Computer Applications (BCA) degree from Jamia Hamdard University, which forms the foundation of his GIS-MIS programming and WebGL web development work.";
+      }
+
+      if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('who are you')) {
+        return "Hello! I am Rituraj's Spatial Intelligence Assistant. I can share details regarding his UAV photogrammetry background, GIS-MIS pipelines, the UNESCO Charaideo Maidams project, or launch his 3D models for you. What would you like to know?";
+      }
+
+      if (q.includes('thank') || q.includes('awesome') || q.includes('cool') || q.includes('great')) {
+        return "You're very welcome! Feel free to ask more about Rituraj's survey projects or try out the 3D spatial demos above.";
+      }
+
+      return "Rituraj specializes in UAV survey planning, geodetic DGPS control, LiDAR/photogrammetry, and spatial web engineering. You can ask about his UNESCO heritage documentation, his DGCA drone certification, his GIS software stack, or tell me to launch one of his 3D models!";
     }
 
     function appendMessage(sender, text) {
@@ -643,7 +678,7 @@
       if (sender === 'bot') {
         const badge = document.createElement('div');
         badge.className = 'hud-bubble-badge';
-        badge.innerText = 'ASSISTANT';
+        badge.innerText = 'SPATIAL AGENT';
         bubble.appendChild(badge);
       }
 
